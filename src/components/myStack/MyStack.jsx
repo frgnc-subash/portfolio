@@ -14,12 +14,14 @@ const MyStack = () => {
   }, [word.length]);
 
   const stackItems = [
-    { name: "React", color: "from-cyan-400 to-blue-500", icon: "⚛️" },
-    { name: "JavaScript", color: "from-yellow-300 to-orange-500", icon: "🟨" },
-    { name: "TailwindCSS", color: "from-teal-400 to-cyan-500", icon: "💨" },
-    { name: "Node.js", color: "from-green-400 to-emerald-600", icon: "🟩" },
-    { name: "Express", color: "from-gray-400 to-gray-700", icon: "🚂" },
-    { name: "TypeScript", color: "from-blue-400 to-indigo-500", icon: "🔷" },
+    { color: "from-cyan-400 to-blue-500", icon: "REACT" },
+    { color: "from-yellow-300 to-orange-500", icon: "JS" },
+    { color: "from-teal-400 to-cyan-500", icon: "TCSS" },
+    { color: "from-green-400 to-emerald-600", icon: "NODE" },
+    { color: "from-green-400 to-blue-700", icon: "Figma" },
+    { color: "from-purple-400 to-red-500", icon: "GIT" },
+    { color: "from-yellow-400 to-indigo-500", icon: "Bash" },
+    { color: "from-red-400 to-indigo-500", icon: "ZSH" },
   ];
 
   return (
@@ -46,7 +48,7 @@ const MyStack = () => {
       <div className="flex items-center justify-center min-h-[70vh] relative z-10 flex-col gap-6">
         <div className="w-[90%] max-w-4xl bg-black/70 p-6 rounded-lg border border-cyan-400/60 shadow-[0_0_20px_rgba(0,255,255,0.5)]">
           <h2 className="text-cyan-300 font-pixel text-lg mb-6 tracking-wider animate-pulse">
-            🛠️ Tech I Use
+            My Tech Stack
           </h2>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">

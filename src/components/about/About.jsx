@@ -25,34 +25,25 @@ const About = () => {
 
         <div className="max-w-lg text-center md:text-left space-y-4">
           <p className="text-sm md:text-base leading-relaxed text-gray-300">
-            Hey there! I’m{" "}
-            <span className="text-cyan-300 font-bold">Seronin</span>, a
-            passionate developer with a love for crafting futuristic and
-            retro-styled interfaces. I enjoy blending technology with design to
-            create unique, interactive, and visually stunning experiences.
+            Hey there! I’m
+            <span className="text-cyan-300 font-bold">Subash</span>
+            <p>Creating a world with pixels.</p>
           </p>
           <p className="text-sm md:text-base leading-relaxed text-gray-300">
-            My journey started with curiosity and evolved into a full-blown
-            obsession with web technologies, animation, and user experience. I
-            aim to build things that not only work — but feel alive.
+            Based in Nepal
           </p>
 
           <div className="flex flex-wrap gap-2 mt-4">
-            {[
-              "JavaScript",
-              "React",
-              "TailwindCSS",
-              "Node.js",
-              "Three.js",
-              "Git",
-            ].map((skill, idx) => (
-              <span
-                key={idx}
-                className="bg-black/50 border border-cyan-400/60 px-3 py-1 text-xs rounded shadow-[0_0_8px_rgba(0,255,255,0.5)] hover:shadow-[0_0_12px_rgba(0,255,255,0.8)] transition"
-              >
-                {skill}
-              </span>
-            ))}
+            {["JavaScript", "React", "Bash", "Node.js", "Figma", "Git"].map(
+              (skill, idx) => (
+                <span
+                  key={idx}
+                  className="bg-black/50 border border-cyan-400/60 px-3 py-1 text-xs rounded shadow-[0_0_8px_rgba(0,255,255,0.5)] hover:shadow-[0_0_12px_rgba(0,255,255,0.8)] transition"
+                >
+                  {skill}
+                </span>
+              )
+            )}
           </div>
 
           <button
