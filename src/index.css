@@ -1,0 +1,20 @@
+@import "tailwindcss";
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #00001b;
+  font-family: "Silkscreen", sans-serif;
+  /* font-family: "Pixelify Sans", sans-serif; */
+  color: #ffffff;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 20px;
+  font-size: 32px;
+  font-weight: 800;
+}
