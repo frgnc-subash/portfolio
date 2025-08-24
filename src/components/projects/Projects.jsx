@@ -18,7 +18,7 @@ const Projects = () => {
 
       <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4">
         <h1 className="text-3xl mb-6 text-pink-400 drop-shadow-[0_0_10px_rgba(255,105,180,0.8)]">
-          🚀 Projects
+          Projects
         </h1>
         <ul className="space-y-4 w-full max-w-lg">
           {projects.map((project, i) => (

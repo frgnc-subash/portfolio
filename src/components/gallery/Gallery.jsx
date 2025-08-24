@@ -15,7 +15,7 @@ const Gallery = () => {
 
       <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4">
         <h1 className="text-3xl mb-6 text-red-400 drop-shadow-[0_0_10px_rgba(255,0,0,0.8)]">
-          🖼 Gallery
+          Gallery
         </h1>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-5xl">
           {images.map((src, i) => (
