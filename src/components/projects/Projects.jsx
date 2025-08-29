@@ -9,7 +9,10 @@ const Projects = () => {
       name: "Portfolio Website",
       desc: "My personal portfolio built with React & TailwindCSS.",
     },
-    { name: "Todo App", desc: "A simple todo app with Node.js backend." },
+    {
+      name: "Athlon-One",
+      desc: "A simple website and a platform for sports players.",
+    },
   ];
 
   return (

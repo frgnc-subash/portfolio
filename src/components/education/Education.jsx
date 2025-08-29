@@ -6,11 +6,15 @@ const Education = () => {
 
   const educationList = [
     {
-      title: "B.Sc. Computer Science",
-      place: "XYZ University",
+      title: "BSc.(HONS)IT",
+      place: "Asia Pacific University",
       year: "2020 - Present",
     },
-    { title: "High School", place: "ABC School", year: "2018 - 2020" },
+    {
+      title: "High School",
+      place: "St. Xavier's School, Jawalakhel",
+      year: "2022 - 2024",
+    },
   ];
 
   return (
@@ -19,7 +23,7 @@ const Education = () => {
 
       <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4">
         <h1 className="text-3xl mb-6 text-yellow-300 drop-shadow-[0_0_10px_rgba(255,255,0,0.8)]">
-           Education
+          Education
         </h1>
         <ul className="space-y-4 text-lg w-full max-w-md">
           {educationList.map((edu, i) => (
