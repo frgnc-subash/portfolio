@@ -16,7 +16,7 @@ const Home = () => {
   return (
     <div className="bg-gradient-to-b from-black via-blue-950 to-black min-h-screen text-white relative overflow-hidden">
     
-      <div className="absolute inset-0 bg-[url('/stars.png')] bg-cover bg-center opacity-30 animate-[scrollStars_60s_linear_infinite]" />
+      {/* <div className="absolute inset-0 bg-[url('/stars.png')] bg-cover bg-center opacity-30 animate-[scrollStars_60s_linear_infinite]" /> */}
 
       <div className="flex justify-center py-6 relative z-10">
         <header className="text-4xl font-bold flex gap-1 font-pixel">
