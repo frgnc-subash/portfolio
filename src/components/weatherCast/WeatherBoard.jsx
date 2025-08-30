@@ -30,9 +30,9 @@ const WeatherBoard = () => {
 
   if (!weather || !weather.main)
     return (
-      <div className="fixed right-6 top-20 w-52 space-y-1 p-1 z-50">
-        <div className="bg-gray-200/80 p-1 rounded shadow text-xs text-center">
-          Loading...
+      <div className="fixed right-6 top-20 w-56 space-y-2 p-1 z-50">
+        <div className="bg-gray-200/80 p-2 rounded shadow text-sm">
+          Loading weather...
         </div>
       </div>
     );
@@ -40,33 +40,33 @@ const WeatherBoard = () => {
   const status = weather.weather[0].main; // e.g., Rain, Clear, Clouds
 
   return (
-    <div className="fixed right-6 top-20 w-52 space-y-1 z-50 text-gray-800">
+    <div className="fixed right-6 top-20 w-56 space-y-2 z-50">
       {/* Block 1: Weather status */}
-      <div className="bg-yellow-100/90 border border-brown-600 rounded-lg p-1 shadow text-center font-bold text-xs">
-        <p className="text-[10px]">Status</p>
-        <p className="text-sm">{status}</p>
+      <div className="bg-yellow-100/90 border border-brown-600 rounded-lg p-2 shadow text-center font-bold text-gray-800">
+        <p className="text-sm">Status</p>
+        <p className="text-xl">{status}</p>
         <img
           src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
           alt="Weather icon"
-          className="w-8 h-8 mx-auto"
+          className="w-12 h-12 mx-auto"
         />
       </div>
 
       {/* Block 2: Actual data */}
-      <div className="bg-white/90 border border-gray-400 rounded-lg p-1 shadow font-sans text-xs">
-        <p className="font-bold text-center mb-0.5">Data</p>
+      <div className="bg-white/90 border border-gray-400 rounded-lg p-2 shadow font-sans text-gray-800 text-sm">
+        <p className="font-bold text-center mb-1">Weather Data</p>
         <p>🌡 {Math.round(weather.main.temp)}°C</p>
-        <p>💧 {weather.main.humidity}%</p>
-        <p>💨 {weather.wind.speed} m/s</p>
+        <p>💧 {weather.main.humidity}% Humidity</p>
+        <p>💨 {weather.wind.speed} m/s Wind</p>
       </div>
 
       {/* Block 3: Current time */}
-      <div className="bg-blue-100/90 border border-blue-500 rounded-lg p-1 shadow text-center font-mono text-xs">
-        <p className="font-bold mb-0.5">Time</p>
+      <div className="bg-blue-100/90 border border-blue-500 rounded-lg p-2 shadow text-center font-mono text-gray-800 text-sm">
+        <p className="font-bold mb-1">Local Time</p>
         <p>
           {time.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
         </p>
-        <p className="text-[10px]">{time.toLocaleDateString()}</p>
+        <p>{time.toLocaleDateString()}</p>
       </div>
     </div>
   );

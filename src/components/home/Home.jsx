@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import WeatherBoard from "../weatherCast/WeatherBoard";
 
 const Home = () => {
   const word = "subash";
@@ -81,6 +82,7 @@ const Home = () => {
           100% { background-position: 0 100%; }
         }
       `}</style>
+      <WeatherBoard />
     </div>
   );
 };

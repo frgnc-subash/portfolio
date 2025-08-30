@@ -9,6 +9,7 @@ import Contact from "./components/contact/Contact";
 import Gallery from "./components/gallery/Gallery";
 import About from "./components/about/About";
 import NotFound from "./components/PageNotFound"; // New 404 page
+import WeatherApp from "./components/weatherCast/WeatherBoard";
 // import { Analytics } from "@vercel/analytics/next";
 
 const App = () => {
@@ -27,7 +28,6 @@ const App = () => {
 
   return (
     <>
-      {/* <Analytics /> */}
       {!isLoaded ? (
         <LoadingScreen onComplete={() => setIsLoaded(true)} />
       ) : (
