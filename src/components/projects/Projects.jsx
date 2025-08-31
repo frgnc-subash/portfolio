@@ -8,10 +8,12 @@ const Projects = () => {
     {
       name: "Portfolio Website",
       desc: "My personal portfolio built with React & TailwindCSS.",
+      link: "https://frgnc-subash.vercel.app/", 
     },
     {
       name: "Athlon-One",
       desc: "A simple website and a platform for sports players.",
+      link: "https://athlon-one.vercel.app/",
     },
   ];
 
@@ -27,10 +29,25 @@ const Projects = () => {
           {projects.map((project, i) => (
             <li
               key={i}
-              className="px-4 py-3 border border-pink-400/50 rounded-lg shadow-[0_0_15px_rgba(255,105,180,0.4)] hover:shadow-[0_0_20px_rgba(255,105,180,0.8)] transition-all"
+              className="px-4 py-3 border border-pink-400/50 rounded-lg shadow-[0_0_15px_rgba(255,105,180,0.4)] hover:shadow-[0_0_20px_rgba(255,105,180,0.8)] transition-all cursor-pointer"
             >
-              <div className="text-cyan-300 font-bold">{project.name}</div>
-              <div className="text-sm text-gray-400">{project.desc}</div>
+              {/* Check if it's an external link or internal route */}
+              {project.link.startsWith("http") ? (
+                <a
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block"
+                >
+                  <div className="text-cyan-300 font-bold">{project.name}</div>
+                  <div className="text-sm text-gray-400">{project.desc}</div>
+                </a>
+              ) : (
+                <div onClick={() => navigate(project.link)}>
+                  <div className="text-cyan-300 font-bold">{project.name}</div>
+                  <div className="text-sm text-gray-400">{project.desc}</div>
+                </div>
+              )}
             </li>
           ))}
         </ul>

@@ -25,9 +25,10 @@ const About = () => {
 
         <div className="max-w-lg text-center md:text-left space-y-4">
           <p className="text-sm md:text-base leading-relaxed text-gray-300">
-            Hey there! I’m
-            <span className="text-cyan-300 font-bold">Subash</span>
-            <p>Creating a world with pixels.</p>
+            Hey there! I’m <span className="text-cyan-300 font-bold">Subash</span>.
+          </p>
+          <p className="text-sm md:text-base leading-relaxed text-gray-300">
+            Creating a world with pixels.
           </p>
           <p className="text-sm md:text-base leading-relaxed text-gray-300">
             Based in Nepal

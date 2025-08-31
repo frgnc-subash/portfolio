@@ -15,7 +15,7 @@ const Home = () => {
 
   return (
     <div className="bg-gradient-to-b from-black via-blue-950 to-black min-h-screen text-white relative overflow-hidden">
-    
+
       {/* <div className="absolute inset-0 bg-[url('/stars.png')] bg-cover bg-center opacity-30 animate-[scrollStars_60s_linear_infinite]" /> */}
 
       <div className="flex justify-center py-6 relative z-10">
@@ -23,11 +23,10 @@ const Home = () => {
           {word.split("").map((char, index) => (
             <span
               key={index}
-              className={`px-1 transition-all duration-200 ${
-                index === activeIndex
-                  ? "bg-gradient-to-r from-cyan-400 to-purple-500 text-yellow-300 shadow-[0_0_10px_rgba(0,255,255,0.7)]"
-                  : ""
-              }`}
+              className={`px-1 transition-all duration-200 ${index === activeIndex
+                ? "bg-gradient-to-r from-cyan-400 to-purple-500 text-yellow-300 shadow-[0_0_10px_rgba(0,255,255,0.7)]"
+                : ""
+                }`}
             >
               {char}
             </span>
@@ -53,14 +52,7 @@ const Home = () => {
               { to: "/myStack", label: "My Stack" },
               { to: "/education", label: "Education" },
               { to: "/projects", label: "Projects" },
-              {
-                to: "/gallery",
-                label: (
-                  <>
-                    Gallery <span className="text-red-500">(❗)</span>
-                  </>
-                ),
-              },
+              { to: "/gallery", label: "Gallery" },
               { to: "/contact", label: "Contact" },
             ].map((item, i) => (
               <li
