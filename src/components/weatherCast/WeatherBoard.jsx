@@ -264,34 +264,6 @@ const WeatherBoard = () => {
           ))}
         </div>
       </div>
-
-      {/* Scanline effect */}
-      <style jsx>{`
-        @keyframes scanline {
-          0% {
-            transform: translateY(-100%);
-          }
-          100% {
-            transform: translateY(100%);
-          }
-        }
-
-        .scanline::before {
-          content: "";
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          height: 2px;
-          background: linear-gradient(
-            transparent,
-            rgba(0, 255, 255, 0.2),
-            transparent
-          );
-          animation: scanline 8s linear infinite;
-          pointer-events: none;
-        }
-      `}</style>
     </div>
   );
 };
