@@ -5,8 +5,7 @@ const WeatherBoard = () => {
   const [time, setTime] = useState(new Date());
   const [isLoading, setIsLoading] = useState(true);
   const [activePanel, setActivePanel] = useState(0);
-
-  const API_KEY = "674a6af0d0456a6f0449cdc98fcd457e";
+  const API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
   const CITY = "Kathmandu,Nepal";
 
   // Fetch weather
@@ -26,7 +25,7 @@ const WeatherBoard = () => {
       }
     };
     fetchWeather();
-  }, []);
+  }, [API_KEY]);
 
   // Update time every second
   useEffect(() => {
@@ -236,13 +235,12 @@ const WeatherBoard = () => {
           {panels.map((panel, index) => (
             <div
               key={panel.id}
-              className={`absolute inset-0 px-6 transition-all duration-700 ease-in-out ${
-                index === activePanel
-                  ? "translate-x-0 opacity-100"
-                  : index < activePanel
+              className={`absolute inset-0 px-6 transition-all duration-700 ease-in-out ${index === activePanel
+                ? "translate-x-0 opacity-100"
+                : index < activePanel
                   ? "-translate-x-full opacity-0"
                   : "translate-x-full opacity-0"
-              }`}
+                }`}
             >
               {panel.content}
             </div>
@@ -255,11 +253,10 @@ const WeatherBoard = () => {
             <button
               key={index}
               onClick={() => setActivePanel(index)}
-              className={`transition-all duration-300 ${
-                index === activePanel
-                  ? "w-8 h-2 bg-cyan-400 shadow-[0_0_10px_rgba(0,255,255,0.8)]"
-                  : "w-2 h-2 bg-gray-600 hover:bg-gray-500"
-              } rounded-full`}
+              className={`transition-all duration-300 ${index === activePanel
+                ? "w-8 h-2 bg-cyan-400 shadow-[0_0_10px_rgba(0,255,255,0.8)]"
+                : "w-2 h-2 bg-gray-600 hover:bg-gray-500"
+                } rounded-full`}
             />
           ))}
         </div>
