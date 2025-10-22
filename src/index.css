@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+body {
+  background-color: black;
+}
+
+#root {
+  opacity: 0;
+  transition: opacity 0.3s ease-in;
+}
+
+#root.loaded {
+  opacity: 1;
+}
