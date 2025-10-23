@@ -30,12 +30,12 @@ const Navbar = () => {
           {soundEnabled ? <FaVolumeUp /> : <FaVolumeMute />}
         </button>
       </div>
-      <div className="flex flex-col items-center p-4 pb-0 w-full text-[10px] sm:text-[12px] md:text-[14px] font-semibold">
+      <div className="flex flex-col items-center p-2 pb-0 xs:p-3 xs:pb-0 sm:p-4 sm:pb-0 w-full text-[8px] xs:text-[9px] sm:text-[11px] md:text-[13px] lg:text-[15px] font-semibold">
         <div className="flex justify-between w-full max-w-[740px]">
           <Link
             to="/"
             onClick={play}
-            className="text-yellow-200 px-4 py-2 hover:bg-yellow-200 hover:text-black transition-all duration-300"
+            className="text-yellow-200 px-2 py-1 xs:px-3 xs:py-1.5 sm:px-4 sm:py-2 hover:bg-yellow-200 hover:text-black transition-all duration-300"
           >
             home
           </Link>
@@ -43,31 +43,31 @@ const Navbar = () => {
             <Link
               to="/myStack"
               onClick={play}
-              className="text-yellow-200 px-4 py-2 hover:bg-yellow-200 hover:text-black transition-all duration-300"
+              className="text-yellow-200 px-2 py-1 xs:px-3 xs:py-1.5 sm:px-4 sm:py-2 hover:bg-yellow-200 hover:text-black transition-all duration-300"
             >
               stack
             </Link>
             <Link
               to="/education"
               onClick={play}
-              className="text-yellow-200 px-4 py-2 hover:bg-yellow-200 hover:text-black transition-all duration-300"
+              className="text-yellow-200 px-2 py-1 xs:px-3 xs:py-1.5 sm:px-4 sm:py-2 hover:bg-yellow-200 hover:text-black transition-all duration-300"
             >
               education
             </Link>
             <Link
               to="/projects"
               onClick={play}
-              className="text-yellow-200 px-4 py-2 hover:bg-yellow-200 hover:text-black transition-all duration-300"
+              className="text-yellow-200 px-2 py-1 xs:px-3 xs:py-1.5 sm:px-4 sm:py-2 hover:bg-yellow-200 hover:text-black transition-all duration-300"
             >
               projects
             </Link>
-            <Link
+<Link
               to="/contact"
               onClick={play}
-              className="text-yellow-200 px-4 py-2 hover:bg-yellow-200 hover:text-black transition-all duration-300"
+              className="text-yellow-200 px-2 py-1 xs:px-3 xs:py-1.5 sm:px-4 sm:py-2 hover:bg-yellow-200 hover:text-black transition-all duration-300"
             >
               contact
-            </Link>
+          </Link>
           </div>
         </div>
         <hr className="text-amber-100 w-full border-t max-w-[740px] h-0.5 " />

@@ -42,8 +42,8 @@ const Home = () => {
   return (
     <>
       <Navbar />
-      <div className="w-auto p-2 flex flex-col items-center">
-        <div className="text-[5px] sm:text-[9px] md:text-[10px] lg:text-[10px] font-bold leading-[1.1] whitespace-pre text-[#00ff00]">
+      <div className="w-auto p-1 xs:p-2 sm:p-3 flex flex-col items-center overflow-hidden">
+        <div className="text-[3.2px] xs:text-[5px] sm:text-[6px] md:text-[8px] lg:text-[10px] xl:text-[12px] font-bold leading-[1.1] whitespace-pre text-[#00ff00]">
           <pre>{animatedAscii}</pre>
         </div>
       </div>
