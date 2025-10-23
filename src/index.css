@@ -1,7 +1,10 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+@import url('https://cdn.jsdelivr.net/npm/@fontsource/nerd-fonts@3.2.0/nerd-fonts.min.css');
 
 body {
   background-color: black;
+  font-family: 'JetBrains Mono', 'Nerd Fonts', monospace;
 }
 
 #root {

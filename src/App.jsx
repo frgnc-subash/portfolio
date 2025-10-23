@@ -7,6 +7,7 @@ import Projects from "./components/Projects";
 import Education from "./components/Education";
 import Stack from "./components/Stack";
 import Home from "./components/Home";
+import { SoundProvider } from "./contexts/SoundContext";
 
 const App = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -19,13 +20,13 @@ const App = () => {
     { path: "*", element: <PageNotFound /> },
   ]);
   return (
-    <>
+    <SoundProvider>
       {!isLoaded ? (
         <Loading onComplete={() => setIsLoaded(true)} />
       ) : (
         <RouterProvider router={router} />
       )}
-    </>
+    </SoundProvider>
   );
 };
 

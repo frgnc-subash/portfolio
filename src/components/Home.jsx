@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 import { Ascii } from "../assets/Ascii";
 import Navbar from "./Navbar";
 import useSound from "use-sound";
-import boopSfx from "../sounds/sounds.wav";
+import boopSfx from "../sounds/click.wav";
+import { useSoundContext } from "../contexts/SoundContext";
 
 const Home = () => {
   const [animatedAscii, setAnimatedAscii] = useState("");
-  const [play] = useSound(boopSfx);
+  const { soundEnabled } = useSoundContext();
+  const [play] = useSound(boopSfx, { soundEnabled: soundEnabled });
 
   useEffect(() => {
     if (!Ascii) return;
@@ -24,6 +26,17 @@ const Home = () => {
     }, 90);
 
     return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    console.log(
+      `%c   
+      (\\_/) 
+      ( •_•) < Secret console club!
+     /> 🍪   Here's a cookie for you!
+   `,
+      "color: #ff69b4; font-size: 18px;"
+    );
   }, []);
 
   return (
