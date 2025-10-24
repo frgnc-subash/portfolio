@@ -6,8 +6,8 @@ import Contact from "./components/Contact";
 import Projects from "./components/Projects";
 import Education from "./components/Education";
 import Stack from "./components/Stack";
-import Home from "./components/Home";
-import { SoundProvider } from "./contexts/SoundContext";
+import Home from "./components/landingPage/Home";
+import { SoundProvider } from "./controllers/SoundContext";
 
 const App = () => {
   const [isLoaded, setIsLoaded] = useState(false);
