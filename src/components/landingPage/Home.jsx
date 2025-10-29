@@ -28,12 +28,6 @@ const Home = () => {
       <Profile />
       <Terminal />
       <div className="flex m-4 flex-col items-center gap-4">
-        <button
-          onClick={play}
-          className="bg-green-500 text-black font-bold py-[10px] px-4  hover:bg-[#0034dd] transition"
-        >
-          Click Me !
-        </button>
         <Socials />
       </div>
     </>
