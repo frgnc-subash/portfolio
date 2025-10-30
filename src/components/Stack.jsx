@@ -6,7 +6,7 @@ const Stack = () => {
     <>
       <Navbar />
       <div className="flex justify-center my-4">
-        <p className="text-amber-200">This is Stack.</p>
+        <p className="text-amber-200">Site under construction.</p>
       </div>
     </>
   );

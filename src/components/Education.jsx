@@ -5,7 +5,7 @@ const Education = () => {
     <>
       <Navbar />
       <div className="flex justify-center my-4">
-        <p className="text-amber-200">This is Edutation.</p>
+        <p className="text-amber-200"> Site under construction.</p>
       </div>
     </>
   );
