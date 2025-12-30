@@ -1,3 +1,5 @@
 #### this is my portfolio.
 
-link is <a href="www.subashlamatamang.com.np">here<a/>
+<a href="https://subashlamatamang.com.np" target="_blank" rel="noopener noreferrer">
+  here
+</a>
