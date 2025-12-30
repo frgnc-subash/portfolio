@@ -1,1 +1,38 @@
 @import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --bg-primary: #ffffff;
+  --text-primary: #1a1a1a;
+  --text-secondary: #6b7280;
+  --accent-active: #000000;
+  --accent-brand: #000000;
+  --selection-bg: #b2ceee;
+  --selection-text: #080808;
+}
+
+.dark {
+  /* --- MOONFLY DARK MODE --- */
+  --bg-primary: #080808;
+  --text-primary: #bdbdbd;
+  --text-secondary: #949494;
+  --text-bold: #eeeeee;
+
+  --accent-active: #80a0ff;
+  --accent-brand: #ae81ff;
+
+  --selection-bg: #b2ceee;
+  --selection-text: #080808;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+::selection {
+  background-color: var(--selection-bg);
+  color: var(--selection-text);
+}
