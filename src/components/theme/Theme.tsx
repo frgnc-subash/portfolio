@@ -29,7 +29,7 @@ const Theme = () => {
   return (
     <button
       onClick={toggleTheme}
-      className="p-2 text-gray-800 dark:text-[#eeeeee] transition-colors duration-200"
+      className="p-2 text-gray-800 dark:text-[#eeeeee] transition-colors duration-200 cursor-pointer"
       aria-label="Toggle Theme"
     >
       {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
