@@ -12,6 +12,7 @@ const App = () => {
     {
       path: "/",
       element: <Index />,
+      errorElement: <PageNotFound/>,
       children: [
         { index: true, element: <About /> },
         { path: "blog", element: <Blog /> },

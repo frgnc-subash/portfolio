@@ -7,10 +7,10 @@ const Footer = () => {
     "text-gray-500 hover:text-black dark:text-[#949494] dark:hover:text-[#80a0ff] transition-colors duration-200";
 
   return (
-    <footer className="w-full flex flex-col items-center gap-4 py-8 mt-8 border-t border-gray-200 dark:border-[#323437]">
+    <footer className="w-full flex flex-col items-center gap-4 py-8 mt-8 border-t border-gray-500 dark:border-[#323437]">
       <div className="flex gap-6 items-center">
         <a
-          href="https://github.com/yourusername"
+          href="https://github.com/frgnc-subash"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="GitHub"
@@ -37,7 +37,7 @@ const Footer = () => {
           <FiLinkedin size={20} />
         </a>
         <a
-          href="https://facebook.com/yourusername"
+          href="https://facebook.com/frgnc.subash"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Facebook"
@@ -47,7 +47,7 @@ const Footer = () => {
         </a>
       </div>
 
-      <div className="text-sm text-gray-400 dark:text-[#949494]">
+      <div className="text-sm text-gray-500 dark:text-[#949494]">
         &copy; {currentYear} frgnc-subash
       </div>
     </footer>
