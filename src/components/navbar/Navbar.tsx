@@ -56,22 +56,21 @@ const Navbar = () => {
         <img
           src={lightLogo}
           alt="Logo"
-          className="h-5 sm:h-6 w-auto block dark:hidden "
+          className="h-5 sm:h-6 w-auto block dark:hidden"
         />
         <img
           src={darkLogo}
           alt="Logo"
-          className="h-5 sm:h-6 w-auto hidden dark:block "
+          className="h-5 sm:h-6 w-auto hidden dark:block"
         />
       </NavLink>
 
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-2 sm:gap-4">
         <ul
           ref={listRef}
           className="relative hidden sm:flex items-center bg-transparent"
           onMouseLeave={resetIndicator}
         >
-          {/* UPDATED: Changed bg-gray-100 to bg-gray-200 for better visibility */}
           <li
             className="absolute top-0 bottom-0 rounded bg-gray-200 dark:bg-[#1e1e1e] transition-all duration-300 ease-in-out -z-10"
             style={{
@@ -88,7 +87,7 @@ const Navbar = () => {
                 to={link.path}
                 onMouseEnter={(e) => moveIndicator(e.currentTarget)}
                 className={({ isActive }) =>
-                  `block px-4 py-2 font-medium transition-colors duration-200 ${
+                  `block px-4 py-2 font-semibold transition-colors duration-200 ${
                     isActive
                       ? "active-link text-black dark:text-(--accent-active) font-bold"
                       : "text-gray-600 dark:text-(--text-secondary) hover:text-black dark:hover:text-[#e4e4e4]"
@@ -120,7 +119,7 @@ const Navbar = () => {
               to={link.path}
               onClick={() => setIsOpen(false)}
               className={({ isActive }) =>
-                `text-base font-medium transition-colors duration-200 ${
+                `text-base font-semibold transition-colors duration-200 ${
                   isActive
                     ? "text-black dark:text-(--accent-active) font-bold"
                     : "text-gray-600 dark:text-(--text-secondary)"

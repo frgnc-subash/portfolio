@@ -1,7 +1,20 @@
+import Graph from "../../components/graph/Graph";
+import Stack from "../../components/stacks/Stack";
+import Profile from "./Profile";
+
 const About = () => {
   return (
-    <div>
-      <h1>Hi, Subash Here.</h1>
+    <div className="max-w-4xl mx-auto px-4 py-8 sm:py-12 space-y-12">
+      <Profile />
+      <section className="w-full">
+        <Stack />
+      </section>
+      <section className="w-full">
+        <h2 className="text-xl font-semibold mb-6 text-black dark:text-[#e4e4e4]">
+          Navigation Map
+        </h2>
+        <Graph />
+      </section>
     </div>
   );
 };
