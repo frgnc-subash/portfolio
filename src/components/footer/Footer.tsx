@@ -19,7 +19,7 @@ const Footer = () => {
           <FiGithub size={20} />
         </a>
         <a
-          href="https://instagram.com/frgnc_subash"
+          href="https://instagram.com/frgnc.subash"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Instagram"
