@@ -53,7 +53,7 @@ const Profile = () => {
             <span className="text-gray-300 dark:text-gray-700 select-none">•</span>
             <span className="font-medium hover:text-black dark:hover:text-gray-200 transition-colors">
               UI/UX
-            </span>w
+            </span>
             <span className="text-gray-300 dark:text-gray-700 select-none">•</span>
             <span className="font-medium hover:text-black dark:hover:text-gray-200 transition-colors">
               Linux Enthusiast
