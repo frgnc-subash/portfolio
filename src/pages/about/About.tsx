@@ -4,7 +4,7 @@ import Profile from "./Profile";
 
 const About = () => {
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8 sm:py-12 space-y-12">
+    <div className="max-w-150 mx-auto  py-8 sm:py-12 space-y-12">
       <Profile />
       <section className="w-full">
         <Stack />

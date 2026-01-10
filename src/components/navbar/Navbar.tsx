@@ -47,7 +47,7 @@ const Navbar = () => {
   }, [location.pathname, resetIndicator]);
 
   return (
-    <nav className="relative flex items-center justify-between w-full px-4 py-4 sm:py-6 bg-transparent z-50">
+    <nav className="relative flex items-center justify-between w-full max-w-150 mx-auto px-4 py-4 sm:py-6 bg-transparent z-50">
       <NavLink
         to="/"
         className="group shrink-0 relative z-20"
@@ -112,7 +112,7 @@ const Navbar = () => {
       </div>
 
       {isOpen && (
-        <div className="absolute top-full left-0 w-full bg-white/95 dark:bg-[#080808]/95 backdrop-blur-md border-b border-gray-200 dark:border-[#323437] shadow-lg py-4 flex flex-col items-center gap-4 sm:hidden animate-in slide-in-from-top-2 duration-200">
+        <div className="absolute top-full left-0 w-full bg-white/95 dark:bg-[#080808]/95 backdrop-blur-md border-b border-gray-200 dark:border-[#323437] shadow-lg py-4 flex flex-col items-center gap-4 sm:hidden animate-in slide-in-from-top-2 duration-200 rounded-b-xl z-40">
           {NAV_LINKS.map((link) => (
             <NavLink
               key={link.path}
