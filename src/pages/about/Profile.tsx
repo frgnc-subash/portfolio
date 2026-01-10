@@ -24,7 +24,7 @@ const Profile = () => {
   }, []);
 
   return (
-    <div className="w-full max-w-3xl mx-auto mb-8 transition-colors duration-300">
+    <div className="w-full mx-auto mb-8 transition-colors duration-300">
       <div className="flex items-center gap-4 mb-5">
         <div
           className="shrink-0 relative group cursor-pointer"
@@ -43,7 +43,7 @@ const Profile = () => {
 
         <div className="flex flex-col justify-center min-w-0">
           <h1 className="text-lg sm:text-2xl font-bold tracking-tight text-black dark:text-[#e4e4e4] leading-snug truncate">
-            Subash Lama Tamang
+            Subash Lama
           </h1>
 
           <div className="flex flex-wrap items-center gap-x-2 text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-0.5">
@@ -53,7 +53,7 @@ const Profile = () => {
             <span className="text-gray-300 dark:text-gray-700 select-none">•</span>
             <span className="font-medium hover:text-black dark:hover:text-gray-200 transition-colors">
               UI/UX
-            </span>
+            </span>w
             <span className="text-gray-300 dark:text-gray-700 select-none">•</span>
             <span className="font-medium hover:text-black dark:hover:text-gray-200 transition-colors">
               Linux Enthusiast
