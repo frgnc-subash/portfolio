@@ -1,68 +1,10 @@
 import { ArrowUpRight, Github, FolderGit2, Star } from "lucide-react";
-
-// Placeholder images - replace with your actual project screenshots
-// import project1 from "../../assets/project1.png";
-
-interface Project {
-  id: string;
-  title: string;
-  description: string;
-  tech: string[];
-  link: string;
-  github?: string;
-  image?: string; // Optional image for featured projects
-  isFeatured?: boolean;
-  stars?: number;
-}
-
-const PROJECTS: Project[] = [
-  {
-    id: "1",
-    title: "Obsidian Graph Portfolio",
-    description:
-      "A minimalist personal portfolio featuring an interactive force-directed graph for navigation, built with React and D3.js.",
-    tech: ["React", "TypeScript", "D3.js", "Tailwind"],
-    link: "https://example.com",
-    github: "https://github.com",
-    isFeatured: true,
-    // image: project1
-  },
-  {
-    id: "2",
-    title: "E-Commerce Dashboard",
-    description:
-      "Full-stack analytics dashboard for online stores with real-time data visualization and inventory management.",
-    tech: ["Next.js", "Prisma", "PostgreSQL", "Recharts"],
-    link: "https://example.com",
-    github: "https://github.com",
-    isFeatured: true,
-  },
-  {
-    id: "3",
-    title: "Taskify CLI",
-    description:
-      "A Rust-based command line tool for managing daily tasks and productivity metrics directly from the terminal.",
-    tech: ["Rust", "CLI", "Sqlite"],
-    link: "https://example.com",
-    github: "https://github.com",
-    stars: 124,
-  },
-  {
-    id: "4",
-    title: "Pixel Editor",
-    description:
-      "Browser-based pixel art editor with layer support and export functionality.",
-    tech: ["Vue.js", "Canvas API", "Pinia"],
-    link: "https://example.com",
-    github: "https://github.com",
-    stars: 45,
-  },
-];
+import { PROJECTS } from "../../data/projectData";
 
 const Projects = () => {
   return (
     <div className="max-w-150 mx-auto py-8 sm:py-12 animate-in fade-in slide-in-from-bottom-4 duration-500">
-      <div className="mb-10">
+      <div className="mb-10 px-4 sm:px-0">
         <h1 className="text-3xl font-bold tracking-tight text-black dark:text-[#e4e4e4] mb-2">
           Projects
         </h1>
@@ -72,7 +14,7 @@ const Projects = () => {
       </div>
 
       <div className="flex flex-col gap-10">
-        <div className="grid grid-cols-1 gap-6">
+        <div className="grid grid-cols-1 gap-6 px-4 sm:px-0">
           {PROJECTS.filter((p) => p.isFeatured).map((project) => (
             <div
               key={project.id}
@@ -134,7 +76,7 @@ const Projects = () => {
           ))}
         </div>
 
-        <div className="flex flex-col">
+        <div className="flex flex-col px-4 sm:px-0">
           <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-400 dark:text-gray-500 mb-4 pl-1">
             More Projects
           </h3>

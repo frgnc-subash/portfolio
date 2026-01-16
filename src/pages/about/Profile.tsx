@@ -24,7 +24,7 @@ const Profile = () => {
   }, []);
 
   return (
-    <div className="w-full mx-auto mb-8 transition-colors duration-300">
+    <div className="w-full max-w-150 mx-auto mb-8 transition-colors duration-300">
       <div className="flex items-center gap-4 mb-5">
         <div
           className="shrink-0 relative group cursor-pointer"
