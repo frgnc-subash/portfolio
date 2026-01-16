@@ -24,7 +24,7 @@ const Profile = () => {
   }, []);
 
   return (
-    <div className="w-full mx-auto mb-8 transition-colors duration-300">
+    <div className="w-full max-w-150 mx-auto mb-8 transition-colors duration-300">
       <div className="flex items-center gap-4 mb-5">
         <div
           className="shrink-0 relative group cursor-pointer"
@@ -53,7 +53,7 @@ const Profile = () => {
             <span className="text-gray-300 dark:text-gray-700 select-none">•</span>
             <span className="font-medium hover:text-black dark:hover:text-gray-200 transition-colors">
               UI/UX
-            </span>w
+            </span>
             <span className="text-gray-300 dark:text-gray-700 select-none">•</span>
             <span className="font-medium hover:text-black dark:hover:text-gray-200 transition-colors">
               Linux Enthusiast
