@@ -9,10 +9,10 @@ const About = () => {
     "inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-gray-50/80 dark:bg-[#1e1e1e]/60 backdrop-blur-md text-xs font-semibold text-black dark:text-[#e4e4e4]";
 
   return (
-    <div className="max-w-150 mx-auto px-4 py-8 sm:py-12 space-y-16">
+    <div className="max-w-150 mx-auto  py-8 sm:py-12 space-y-14">
       <Profile />
 
-      <section className="w-full flex flex-col gap-6">
+      <section className="w-full flex flex-col gap-0">
         <div>
           <div className={glassTitle}>
             <Layers size={12} />

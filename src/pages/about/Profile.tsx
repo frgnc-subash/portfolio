@@ -48,13 +48,17 @@ const Profile = () => {
 
           <div className="flex flex-wrap items-center gap-x-2 text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-0.5">
             <span className="font-medium hover:text-black dark:hover:text-gray-200 transition-colors">
-              Aspiring FullStack
+              FullStack
             </span>
-            <span className="text-gray-300 dark:text-gray-700 select-none">•</span>
+            <span className="text-gray-300 dark:text-gray-700 select-none">
+              •
+            </span>
             <span className="font-medium hover:text-black dark:hover:text-gray-200 transition-colors">
-              UI/UX
+              UI/UX Designer
             </span>
-            <span className="text-gray-300 dark:text-gray-700 select-none">•</span>
+            <span className="text-gray-300 dark:text-gray-700 select-none">
+              •
+            </span>
             <span className="font-medium hover:text-black dark:hover:text-gray-200 transition-colors">
               Linux Enthusiast
             </span>
@@ -120,13 +124,17 @@ const Profile = () => {
             <MapPin size={12} className="shrink-0" />
             <span>Nepal</span>
           </div>
-          
-          <span className="hidden sm:inline text-gray-300 dark:text-gray-700 select-none">|</span>
-          
+
+          <span className="hidden sm:inline text-gray-300 dark:text-gray-700 select-none">
+            |
+          </span>
+
           <div className="flex items-center gap-1.5 hover:text-gray-600 dark:hover:text-gray-300 transition-colors">
             <Clock size={12} className="shrink-0" />
             <span className="tabular-nums">{time}</span>
-            <span className="text-[10px] text-gray-400 uppercase tracking-wider">(GMT+5:45)</span>
+            <span className="text-[10px] text-gray-400 uppercase tracking-wider">
+              (GMT+5:45)
+            </span>
           </div>
         </div>
       </div>

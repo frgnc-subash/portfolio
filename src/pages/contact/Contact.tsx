@@ -72,7 +72,7 @@ const Contact = () => {
   ];
 
   return (
-    <div className="max-w-[600px] mx-auto px-4 py-8 sm:py-12 animate-in fade-in slide-in-from-bottom-4 duration-500">
+    <div className="max-w-150 mx-auto px-4 py-8 sm:py-12 animate-in fade-in slide-in-from-bottom-4 duration-500">
       <div className="mb-12">
         <h1 className="text-3xl font-bold tracking-tight text-black dark:text-[#e4e4e4] mb-3 flex items-center gap-2">
           Let's Connect{" "}

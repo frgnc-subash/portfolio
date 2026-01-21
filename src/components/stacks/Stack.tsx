@@ -22,7 +22,7 @@ const Stack = () => {
   ];
 
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8">
+    <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-6">
       {tools.map((tool) => (
         <div
           key={tool.name}
