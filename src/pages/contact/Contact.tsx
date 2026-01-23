@@ -25,7 +25,7 @@ const Contact = () => {
     "idle" | "sending" | "success" | "error"
   >("idle");
 
-  const email = "subash.social357@gmail.com";
+  const email = "axosis.social357@gmail.com";
 
   const handleCopy = () => {
     navigator.clipboard.writeText(email);
