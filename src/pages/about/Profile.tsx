@@ -43,7 +43,7 @@ const Profile = () => {
 
         <div className="flex flex-col justify-center min-w-0">
           <h1 className="text-lg sm:text-2xl font-bold tracking-tight text-black dark:text-[#e4e4e4] leading-snug truncate">
-            Subash Lama
+            Subash Lama Tamang
           </h1>
 
           <div className="flex flex-wrap items-center gap-x-2 text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-0.5">

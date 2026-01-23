@@ -11,6 +11,7 @@ import {
   Send,
   Sparkles,
   ArrowUpRight,
+  AlertCircle,
 } from "lucide-react";
 
 const Contact = () => {
@@ -20,7 +21,9 @@ const Contact = () => {
     email: "",
     message: "",
   });
-  const [status, setStatus] = useState<"idle" | "sending" | "success">("idle");
+  const [status, setStatus] = useState<
+    "idle" | "sending" | "success" | "error"
+  >("idle");
 
   const email = "subash.social357@gmail.com";
 
@@ -30,14 +33,32 @@ const Contact = () => {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus("sending");
-    setTimeout(() => {
-      setStatus("success");
-      setFormState({ name: "", email: "", message: "" });
+
+    try {
+      const response = await fetch("/api/send", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formState),
+      });
+
+      if (response.ok) {
+        setStatus("success");
+        setFormState({ name: "", email: "", message: "" });
+        setTimeout(() => setStatus("idle"), 3000);
+      } else {
+        setStatus("error");
+        setTimeout(() => setStatus("idle"), 3000);
+      }
+    } catch (error) {
+      console.error(error);
+      setStatus("error");
       setTimeout(() => setStatus("idle"), 3000);
-    }, 1500);
+    }
   };
 
   const SOCIALS = [
@@ -72,7 +93,7 @@ const Contact = () => {
   ];
 
   return (
-    <div className="max-w-150 mx-auto px-4 py-8 sm:py-12 animate-in fade-in slide-in-from-bottom-4 duration-500">
+    <div className="max-w-150 mx-auto py-8 sm:py-12 animate-in fade-in slide-in-from-bottom-4 duration-500">
       <div className="mb-12">
         <h1 className="text-3xl font-bold tracking-tight text-black dark:text-[#e4e4e4] mb-3 flex items-center gap-2">
           Let's Connect{" "}
@@ -194,27 +215,39 @@ const Contact = () => {
               />
             </div>
 
-            <button
-              type="submit"
-              disabled={status !== "idle"}
-              className="mt-2 w-full sm:w-auto self-end px-8 py-3 rounded-lg bg-black dark:bg-[#e4e4e4] text-white dark:text-black text-sm font-semibold hover:opacity-90 transition-all disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-lg shadow-black/5 dark:shadow-white/5"
-            >
-              {status === "idle" && (
-                <>
-                  Send Message <ArrowRight size={16} />
-                </>
+            <div className="flex items-center justify-end gap-4 mt-2">
+              {status === "error" && (
+                <span className="text-xs text-red-500 flex items-center gap-1">
+                  <AlertCircle size={14} /> Failed to send
+                </span>
               )}
-              {status === "sending" && (
-                <>
-                  Sending... <Send size={16} className="animate-pulse" />
-                </>
-              )}
-              {status === "success" && (
-                <>
-                  Sent! <Check size={16} />
-                </>
-              )}
-            </button>
+              <button
+                type="submit"
+                disabled={status === "sending" || status === "success"}
+                className="px-8 py-3 rounded-lg bg-black dark:bg-[#e4e4e4] text-white dark:text-black text-sm font-semibold hover:opacity-90 transition-all disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-lg shadow-black/5 dark:shadow-white/5"
+              >
+                {status === "idle" && (
+                  <>
+                    Send Message <ArrowRight size={16} />
+                  </>
+                )}
+                {status === "error" && (
+                  <>
+                    Try Again <ArrowRight size={16} />
+                  </>
+                )}
+                {status === "sending" && (
+                  <>
+                    Sending... <Send size={16} className="animate-pulse" />
+                  </>
+                )}
+                {status === "success" && (
+                  <>
+                    Sent! <Check size={16} />
+                  </>
+                )}
+              </button>
+            </div>
           </form>
         </div>
       </div>
