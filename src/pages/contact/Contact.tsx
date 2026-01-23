@@ -38,7 +38,8 @@ const Contact = () => {
     setStatus("sending");
 
     try {
-      const response = await fetch("/api/send", {
+      // NOTE: Point this to your Express server URL
+      const response = await fetch("http://localhost:5000/api/send", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -46,18 +47,22 @@ const Contact = () => {
         body: JSON.stringify(formState),
       });
 
+      const data = await response.json();
+
       if (response.ok) {
         setStatus("success");
         setFormState({ name: "", email: "", message: "" });
+        // Return to idle after 3 seconds so user can send another if needed
         setTimeout(() => setStatus("idle"), 3000);
       } else {
+        console.error("Server Error:", data.error);
         setStatus("error");
-        setTimeout(() => setStatus("idle"), 3000);
+        setTimeout(() => setStatus("idle"), 4000);
       }
     } catch (error) {
-      console.error(error);
+      console.error("Fetch Error:", error);
       setStatus("error");
-      setTimeout(() => setStatus("idle"), 3000);
+      setTimeout(() => setStatus("idle"), 4000);
     }
   };
 
