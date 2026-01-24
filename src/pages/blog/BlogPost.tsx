@@ -31,7 +31,7 @@ const BlogPost = () => {
   }
 
   return (
-    <article className="max-w-150 mx-auto px-4 py-8 sm:py-12 animate-in fade-in slide-in-from-bottom-4 duration-500">
+    <article className="max-w-150 mx-auto py-8 sm:py-12 animate-in fade-in slide-in-from-bottom-4 duration-500">
       <Link
         to="/blog"
         className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-black dark:hover:text-white transition-colors mb-8 group"

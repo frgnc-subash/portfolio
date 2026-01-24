@@ -38,8 +38,8 @@ const Contact = () => {
     setStatus("sending");
 
     try {
-      // NOTE: Point this to your Express server URL
-      const response = await fetch("http://localhost:5000/api/send", {
+      
+      const response = await fetch("https://portfolio-cskc.onrender.com/api/send", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -52,7 +52,7 @@ const Contact = () => {
       if (response.ok) {
         setStatus("success");
         setFormState({ name: "", email: "", message: "" });
-        // Return to idle after 3 seconds so user can send another if needed
+      
         setTimeout(() => setStatus("idle"), 3000);
       } else {
         console.error("Server Error:", data.error);
