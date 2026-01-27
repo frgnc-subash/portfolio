@@ -27,7 +27,7 @@ export const PROJECTS: Project[] = [
     description:
       "A commercial e-commerce website promoting & featuring tourism in Nepal",
     tech: ["React", "Typescript", "MongoDB Atlas", "NodeJS"],
-    link: "https://mount-treks.vercel.app",
+    link: "https://mounttreks.com",
     github: "https://github.com/frgnc-subash/mount-treks",
     isFeatured: true,
   },
