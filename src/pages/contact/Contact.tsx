@@ -9,7 +9,7 @@ const Contact = () => {
   const [formState, setFormState] = useState({ name: "", email: "", message: "" });
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
 
-  const email = "axosis.social357@gmail.com";
+  const email = "info@subashlamatamang.com";
 
   const BACKEND_URL = "https://portfolio-cskc.onrender.com/api/send";
 
