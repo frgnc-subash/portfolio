@@ -20,7 +20,6 @@ const Contact = () => {
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
 
   const email = "info@subashlamatamang.com";
-
   const BACKEND_URL = "https://portfolio-cskc.onrender.com/api/send";
 
   const handleCopy = () => {
@@ -36,17 +35,21 @@ const Contact = () => {
     try {
       const response = await fetch(BACKEND_URL, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
         body: JSON.stringify(formState),
       });
 
-      if (response.ok) {
+      const data = await response.json();
+
+      if (response.ok && data.success) {
         setStatus("success");
         setFormState({ name: "", email: "", message: "" });
         setTimeout(() => setStatus("idle"), 3000);
       } else {
-        setStatus("error");
-        setTimeout(() => setStatus("idle"), 4000);
+        throw new Error(data.error || "Failed to send");
       }
     } catch (error) {
       console.error(error);
@@ -219,12 +222,7 @@ const Contact = () => {
                   </>
                 )}
               </button>
-
-              {status === "sending" && (
-                <span className="text-[10px] text-gray-400">
-                  Waking up server... (can take 30s)
-                </span>
-              )}
+                
               {status === "error" && (
                 <span className="text-xs text-red-500 flex items-center gap-1">
                   <AlertCircle size={14} /> Error sending message
@@ -239,4 +237,3 @@ const Contact = () => {
 };
 
 export default Contact;
-
