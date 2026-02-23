@@ -19,7 +19,7 @@ const Contact = () => {
   const [formState, setFormState] = useState({ name: "", email: "", message: "" });
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
 
-  const email = "info@subashlamatamang.com";
+  const email = "info@subashlamatamang.com.np";
 
   const BACKEND_URL = "https://portfolio-cskc.onrender.com/api/send";
 
@@ -239,4 +239,3 @@ const Contact = () => {
 };
 
 export default Contact;
-
