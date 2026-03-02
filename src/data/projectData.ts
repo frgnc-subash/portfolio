@@ -25,7 +25,7 @@ export const PROJECTS: Project[] = [
     id: "2",
     title: "Altigo Himalayan Treks",
     description: "A commercial e-commerce website promoting & featuring tourism in Nepal",
-    tech: ["React", "TypeScript", "NodeJS"],
+    tech: ["NextJs", "TypeScript", "React"],
     link: "https://mounttreks.com",
     github: "https://github.com/frgnc-subash/mount-treks",
     isFeatured: true,
