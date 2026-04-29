@@ -13,11 +13,20 @@ import {
   ArrowUpRight,
   AlertCircle,
 } from "lucide-react";
+import { useSeo } from "../../lib/seo";
 
 const Contact = () => {
+  useSeo({
+    title: "Contact",
+    description:
+      "Contact Subash Lama Tamang for full-stack development, React, Next.js, portfolio, and UI/UX design work.",
+    path: "/contact",
+  });
+
   const [copied, setCopied] = useState(false);
   const [formState, setFormState] = useState({ name: "", email: "", message: "" });
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const email = "info@subashlamatamang.com.np";
 
@@ -32,6 +41,15 @@ const Contact = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setErrorMessage("");
+
+    if (formState.message.trim().length < 10) {
+      setStatus("error");
+      setErrorMessage("Message must be at least 10 characters.");
+      setTimeout(() => setStatus("idle"), 4000);
+      return;
+    }
+
     setStatus("sending");
 
     const controller = new AbortController();
@@ -50,12 +68,15 @@ const Contact = () => {
         setFormState({ name: "", email: "", message: "" });
         setTimeout(() => setStatus("idle"), 3000);
       } else {
+        const data = await response.json().catch(() => null);
         setStatus("error");
+        setErrorMessage(data?.error || "Error sending message.");
         setTimeout(() => setStatus("idle"), 4000);
       }
     } catch (error) {
       console.error(error);
       setStatus("error");
+      setErrorMessage("Error sending message.");
       setTimeout(() => setStatus("idle"), 4000);
     } finally {
       window.clearTimeout(timeoutId);
@@ -178,7 +199,10 @@ const Contact = () => {
                 required
                 placeholder="Your Name"
                 value={formState.name}
-                onChange={(e) => setFormState({ ...formState, name: e.target.value })}
+                onChange={(e) => {
+                  setErrorMessage("");
+                  setFormState({ ...formState, name: e.target.value });
+                }}
                 className="w-full px-4 py-3 rounded-lg bg-gray-50 dark:bg-[#080808] border border-gray-200 dark:border-[#323437] focus:border-black dark:focus:border-[#e4e4e4] outline-none transition-all text-sm"
               />
               <input
@@ -186,7 +210,10 @@ const Contact = () => {
                 required
                 placeholder="your@email.com"
                 value={formState.email}
-                onChange={(e) => setFormState({ ...formState, email: e.target.value })}
+                onChange={(e) => {
+                  setErrorMessage("");
+                  setFormState({ ...formState, email: e.target.value });
+                }}
                 className="w-full px-4 py-3 rounded-lg bg-gray-50 dark:bg-[#080808] border border-gray-200 dark:border-[#323437] focus:border-black dark:focus:border-[#e4e4e4] outline-none transition-all text-sm"
               />
             </div>
@@ -195,7 +222,10 @@ const Contact = () => {
               rows={5}
               placeholder="How can I help you?"
               value={formState.message}
-              onChange={(e) => setFormState({ ...formState, message: e.target.value })}
+              onChange={(e) => {
+                setErrorMessage("");
+                setFormState({ ...formState, message: e.target.value });
+              }}
               className="w-full px-4 py-3 rounded-lg bg-gray-50 dark:bg-[#080808] border border-gray-200 dark:border-[#323437] focus:border-black dark:focus:border-[#e4e4e4] outline-none transition-all resize-none text-sm"
             />
 
@@ -234,7 +264,7 @@ const Contact = () => {
               )}
               {status === "error" && (
                 <span className="text-xs text-red-500 flex items-center gap-1">
-                  <AlertCircle size={14} /> Error sending message
+                  <AlertCircle size={14} /> {errorMessage || "Error sending message."}
                 </span>
               )}
             </div>

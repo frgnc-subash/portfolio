@@ -1,4 +1,12 @@
+import { useSeo } from "../lib/seo";
+
 const PageNotFound = () => {
+  useSeo({
+    title: "Page Not Found",
+    description: "The requested page could not be found on Subash Lama Tamang's portfolio.",
+    path: "/404",
+  });
+
   return (
     <div className="flex h-[64vh] items-center justify-center">
       <h1 className="text-xl font-medium tracking-widest text-zinc-500 dark:text-zinc-400 uppercase">

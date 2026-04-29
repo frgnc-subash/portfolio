@@ -1,7 +1,28 @@
 import { ArrowUpRight, Github, FolderGit2, Star } from "lucide-react";
 import { PROJECTS } from "../../data/projectData";
+import { SITE_URL, useSeo } from "../../lib/seo";
 
 const Projects = () => {
+  useSeo({
+    title: "Projects",
+    description:
+      "Selected web development projects by Subash Lama Tamang, including React, Next.js, TypeScript, UI, and interactive portfolio work.",
+    path: "/projects",
+    jsonLd: {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      name: "Projects by Subash Lama Tamang",
+      url: `${SITE_URL}/projects`,
+      hasPart: PROJECTS.map((project) => ({
+        "@type": "CreativeWork",
+        name: project.title,
+        description: project.description,
+        url: project.link,
+        programmingLanguage: project.tech,
+      })),
+    },
+  });
+
   return (
     <div className="max-w-150 mx-auto py-8 sm:py-12 animate-in fade-in slide-in-from-bottom-4 duration-500">
       <div className="mb-10 px-4 sm:px-0">

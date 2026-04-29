@@ -1,8 +1,29 @@
 import { Link } from "react-router-dom";
 import { ArrowUpRight, Sparkles, Calendar } from "lucide-react";
 import { BLOG_POSTS } from "../../data/blogData";
+import { SITE_URL, useSeo } from "../../lib/seo";
 
 const Blog = () => {
+  useSeo({
+    title: "Writing",
+    description:
+      "Articles by Subash Lama Tamang on React, interface design, dark mode, graph visualization, state management, and frontend performance.",
+    path: "/blog",
+    jsonLd: {
+      "@context": "https://schema.org",
+      "@type": "Blog",
+      name: "Writing by Subash Lama Tamang",
+      url: `${SITE_URL}/blog`,
+      blogPost: BLOG_POSTS.map((post) => ({
+        "@type": "BlogPosting",
+        headline: post.title,
+        description: post.excerpt,
+        url: `${SITE_URL}${post.slug}`,
+        datePublished: post.date,
+      })),
+    },
+  });
+
   const featuredPost = BLOG_POSTS.find((post) => post.isFeatured);
   const recentPosts = BLOG_POSTS.filter((post) => post.id !== featuredPost?.id);
 

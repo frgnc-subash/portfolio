@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { ArrowLeft, Calendar } from "lucide-react";
 import { BLOG_POSTS } from "../../data/blogData";
+import { SITE_NAME, SITE_URL, useSeo } from "../../lib/seo";
 
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -9,6 +10,28 @@ const BlogPost = () => {
 
   const fullSlug = `/blog/${slug}`;
   const post = BLOG_POSTS.find((p) => p.slug === fullSlug);
+
+  useSeo({
+    title: post?.title || "Post Not Found",
+    description: post?.excerpt || "The requested writing page could not be found.",
+    path: post?.slug || fullSlug,
+    type: post ? "article" : "website",
+    jsonLd: post
+      ? {
+          "@context": "https://schema.org",
+          "@type": "BlogPosting",
+          headline: post.title,
+          description: post.excerpt,
+          datePublished: post.date,
+          author: {
+            "@type": "Person",
+            name: SITE_NAME,
+            url: SITE_URL,
+          },
+          mainEntityOfPage: `${SITE_URL}${post.slug}`,
+        }
+      : undefined,
+  });
 
   useEffect(() => {
     window.scrollTo(0, 0);
