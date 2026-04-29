@@ -27,19 +27,14 @@ const Blog = () => {
               className="group block relative overflow-hidden rounded-2xl bg-gray-50 dark:bg-[#1e1e1e] border border-gray-100 dark:border-[#323437] p-6 sm:p-8 transition-all hover:border-gray-300 dark:hover:border-gray-600"
             >
               <div className="absolute top-4 right-4 p-2 rounded-full bg-white dark:bg-[#080808] border border-gray-100 dark:border-[#323437] opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <ArrowUpRight
-                  size={16}
-                  className="text-black dark:text-white"
-                />
+                <ArrowUpRight size={16} className="text-black dark:text-white" />
               </div>
 
               <div className="flex items-center gap-3 mb-4">
                 <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-medium bg-black dark:bg-[#e4e4e4] text-white dark:text-black">
                   <Sparkles size={10} /> Featured
                 </span>
-                <span className="text-xs text-gray-500 font-medium">
-                  {featuredPost.date}
-                </span>
+                <span className="text-xs text-gray-500 font-medium">{featuredPost.date}</span>
               </div>
 
               <h2 className="text-xl sm:text-2xl font-bold text-black dark:text-[#e4e4e4] mb-3 group-hover:underline decoration-1 underline-offset-4">
@@ -66,9 +61,7 @@ const Blog = () => {
                   key={post.id}
                   to={post.slug}
                   className={`group flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-8 py-6 hover:bg-gray-50/50 dark:hover:bg-[#1e1e1e]/30 transition-colors px-3 rounded-lg -mx-3 ${
-                    !isLast
-                      ? "border-b border-gray-100 dark:border-[#1e1e1e]"
-                      : ""
+                    !isLast ? "border-b border-gray-100 dark:border-[#1e1e1e]" : ""
                   }`}
                 >
                   <div className="shrink-0 w-16 text-xs font-medium text-gray-400 dark:text-gray-500 font-mono">

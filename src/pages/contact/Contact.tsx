@@ -21,7 +21,8 @@ const Contact = () => {
 
   const email = "info@subashlamatamang.com.np";
 
-  const BACKEND_URL = "https://portfolio-cskc.onrender.com/api/send";
+  const BACKEND_URL =
+    import.meta.env.VITE_CONTACT_API_URL || "https://portfolio-cskc.onrender.com/api/send";
 
   const handleCopy = () => {
     navigator.clipboard.writeText(email);
@@ -33,11 +34,15 @@ const Contact = () => {
     e.preventDefault();
     setStatus("sending");
 
+    const controller = new AbortController();
+    const timeoutId = window.setTimeout(() => controller.abort(), 15000);
+
     try {
       const response = await fetch(BACKEND_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formState),
+        signal: controller.signal,
       });
 
       if (response.ok) {
@@ -52,6 +57,8 @@ const Contact = () => {
       console.error(error);
       setStatus("error");
       setTimeout(() => setStatus("idle"), 4000);
+    } finally {
+      window.clearTimeout(timeoutId);
     }
   };
 

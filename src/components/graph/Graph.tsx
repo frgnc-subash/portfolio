@@ -1,6 +1,15 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import type {
+  MouseEvent as ReactMouseEvent,
+  PointerEvent as ReactPointerEvent,
+} from "react";
 import ForceGraph2D from "react-force-graph-2d";
-import type { GraphData, NodeObject } from "react-force-graph-2d";
+import type {
+  ForceGraphMethods,
+  GraphData,
+  LinkObject,
+  NodeObject,
+} from "react-force-graph-2d";
 import { useNavigate } from "react-router-dom";
 
 interface CustomNode extends NodeObject {
@@ -14,6 +23,11 @@ interface CustomNode extends NodeObject {
 const Graph = () => {
   const navigate = useNavigate();
   const containerRef = useRef<HTMLDivElement>(null);
+  const graphRef =
+    useRef<ForceGraphMethods<NodeObject<CustomNode>, LinkObject<CustomNode>> | undefined>(
+      undefined
+    );
+  const pointerStartRef = useRef<{ x: number; y: number } | null>(null);
   const [dimensions, setDimensions] = useState({ w: 400, h: 300 });
   const [isDark, setIsDark] = useState(false);
 
@@ -75,16 +89,72 @@ const Graph = () => {
     text: isDark ? "#e5e7eb" : "#111827",
   };
 
+  const getNodeAtPoint = (clientX: number, clientY: number) => {
+    const graph = graphRef.current;
+    const container = containerRef.current;
+    if (!graph || !container) return null;
+
+    const rect = container.getBoundingClientRect();
+    const graphCoords = graph.screen2GraphCoords(clientX - rect.left, clientY - rect.top);
+    const zoom = graph.zoom() || 1;
+    let nearestNode: CustomNode | null = null;
+    let nearestDistance = Infinity;
+
+    for (const node of data.nodes as CustomNode[]) {
+      if (!node.path || node.x == null || node.y == null) continue;
+
+      const distance = Math.hypot(graphCoords.x - node.x, graphCoords.y - node.y);
+      const hitRadius = Math.max(node.val * 1.4, 20 / zoom);
+
+      if (distance <= hitRadius && distance < nearestDistance) {
+        nearestNode = node;
+        nearestDistance = distance;
+      }
+    }
+
+    return nearestNode;
+  };
+
+  const handlePointerDown = (event: ReactPointerEvent<HTMLDivElement>) => {
+    pointerStartRef.current = { x: event.clientX, y: event.clientY };
+  };
+
+  const handleClickCapture = (event: ReactMouseEvent<HTMLDivElement>) => {
+    const start = pointerStartRef.current;
+    const movement = start ? Math.hypot(event.clientX - start.x, event.clientY - start.y) : 0;
+
+    if (movement > 6) return;
+
+    const node = getNodeAtPoint(event.clientX, event.clientY);
+    if (!node?.path) return;
+
+    event.preventDefault();
+    event.stopPropagation();
+    navigate(node.path);
+  };
+
+  const handleMouseMove = (event: ReactMouseEvent<HTMLDivElement>) => {
+    if (!containerRef.current) return;
+    containerRef.current.style.cursor = getNodeAtPoint(event.clientX, event.clientY)
+      ? "pointer"
+      : "grab";
+  };
+
   return (
     <div
       ref={containerRef}
-      className="w-full rounded-xl overflow-hidden border border-gray-200 dark:border-[#323437] bg-white dark:bg-[#080808] cursor-grab active:cursor-grabbing"
+      onPointerDown={handlePointerDown}
+      onClickCapture={handleClickCapture}
+      onMouseMove={handleMouseMove}
+      className="relative w-full rounded-xl overflow-hidden border border-gray-200 dark:border-[#323437] bg-white dark:bg-[#080808] cursor-grab active:cursor-grabbing"
     >
       <ForceGraph2D<CustomNode>
+        ref={graphRef}
         width={dimensions.w}
         height={dimensions.h}
         graphData={data}
         backgroundColor={colors.bg}
+        enablePointerInteraction
         enablePanInteraction
         enableZoomInteraction
         cooldownTicks={100}

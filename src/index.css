@@ -36,3 +36,102 @@ body {
   background-color: var(--selection-bg);
   color: var(--selection-text);
 }
+
+.loader-track {
+  position: absolute;
+  bottom: 22px;
+  width: 116px;
+  height: 2px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: color-mix(in srgb, currentColor 20%, transparent);
+}
+
+.loader-track::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, currentColor 55%, transparent),
+    transparent
+  );
+  animation: loader-track-sweep 1s cubic-bezier(0.45, 0, 0.2, 1) forwards;
+}
+
+.loader-block {
+  position: absolute;
+  bottom: 24px;
+  width: 22px;
+  height: 22px;
+  border: 1px solid color-mix(in srgb, currentColor 48%, transparent);
+  border-radius: 4px;
+  background:
+    linear-gradient(135deg, color-mix(in srgb, currentColor 24%, transparent), transparent 58%),
+    var(--bg-primary);
+  box-shadow:
+    0 10px 16px -13px currentColor,
+    0 2px 0 color-mix(in srgb, currentColor 18%, transparent),
+    inset 0 1px 0 color-mix(in srgb, currentColor 18%, transparent);
+  transform-origin: 50% 50%;
+  animation: loader-block-roll 1s cubic-bezier(0.45, 0, 0.2, 1) forwards;
+}
+
+@keyframes loader-block-roll {
+  0% {
+    opacity: 1;
+    transform: translateX(-48px) translateY(0) rotate(0deg) scale(1);
+  }
+
+  12% {
+    transform: translateX(-36px) translateY(-4px) rotate(45deg) scale(1);
+  }
+
+  24% {
+    transform: translateX(-24px) translateY(0) rotate(90deg) scale(1);
+  }
+
+  36% {
+    transform: translateX(-12px) translateY(-4px) rotate(135deg) scale(1);
+  }
+
+  48% {
+    transform: translateX(0) translateY(0) rotate(180deg) scale(1);
+  }
+
+  60% {
+    transform: translateX(12px) translateY(-4px) rotate(225deg) scale(1);
+  }
+
+  72% {
+    transform: translateX(24px) translateY(0) rotate(270deg) scale(1);
+  }
+
+  84% {
+    opacity: 1;
+    transform: translateX(36px) translateY(-4px) rotate(315deg) scale(0.92);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(48px) translateY(0) rotate(360deg) scale(0.18);
+  }
+}
+
+@keyframes loader-track-sweep {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loader-block,
+  .loader-track::after {
+    animation-duration: 1.2s;
+  }
+}
