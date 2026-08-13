@@ -47,7 +47,10 @@ const isRateLimited = (request: Request) => {
   const entry = rateLimitStore.get(identifier);
 
   if (!entry || entry.resetAt <= now) {
-    rateLimitStore.set(identifier, { count: 1, resetAt: now + RATE_LIMIT_WINDOW_MS });
+    rateLimitStore.set(identifier, {
+      count: 1,
+      resetAt: now + RATE_LIMIT_WINDOW_MS,
+    });
     return false;
   }
 
@@ -90,13 +93,22 @@ export async function POST(request: Request) {
   if (website) return Response.json({ success: true });
 
   if (!name || !email || !message) {
-    return Response.json({ error: "All fields are required." }, { status: 400 });
+    return Response.json(
+      { error: "All fields are required." },
+      { status: 400 },
+    );
   }
   if (!EMAIL_PATTERN.test(email)) {
-    return Response.json({ error: "Please enter a valid email address." }, { status: 400 });
+    return Response.json(
+      { error: "Please enter a valid email address." },
+      { status: 400 },
+    );
   }
   if (message.length < 10) {
-    return Response.json({ error: "Message must be at least 10 characters." }, { status: 400 });
+    return Response.json(
+      { error: "Message must be at least 10 characters." },
+      { status: 400 },
+    );
   }
   if (!SUBMISSION_ID_PATTERN.test(submissionId)) {
     return Response.json({ error: "Invalid submission." }, { status: 400 });
@@ -109,14 +121,63 @@ export async function POST(request: Request) {
 
   if (!apiKey || !senderEmail || !receiveEmail) {
     console.error("Contact email environment variables are not configured.");
-    return Response.json({ error: "Email service is not configured." }, { status: 503 });
+    return Response.json(
+      { error: "Email service is not configured." },
+      { status: 503 },
+    );
   }
 
   const resend = new Resend(apiKey);
   const safeName = escapeHtml(name);
   const safeEmail = escapeHtml(email);
   const safeMessage = escapeHtml(message).replace(/\n/g, "<br />");
-  const safeSubjectName = name.replace(/[\r\n]/g, " ").slice(0, MAX_NAME_LENGTH);
+  const safeSubjectName = name
+    .replace(/[\r\n]/g, " ")
+    .slice(0, MAX_NAME_LENGTH);
+  const siteUrl = "https://subashlamatamang.com.np";
+
+  const emailShell = (content: string) => `
+    <!doctype html>
+    <html lang="en">
+      <body style="margin:0;padding:0;background:#f5f5f5;color:#171717;font-family:Arial,Helvetica,sans-serif;">
+        <div style="max-width:640px;margin:0 auto;padding:32px 16px;">
+          ${content}
+          <p style="margin:20px 0 0;color:#737373;font-size:12px;line-height:18px;text-align:center;">Sent from the contact form on <a href="${siteUrl}" style="color:#525252;">subashlamatamang.com.np</a></p>
+        </div>
+      </body>
+    </html>`;
+
+  const ownerEmailHtml = emailShell(`
+    <div style="overflow:hidden;background:#ffffff;border:1px solid #e5e5e5;border-radius:16px;">
+      <div style="padding:24px 28px;background:#171717;color:#ffffff;">
+        <p style="margin:0 0 6px;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#bdbdbd;">New enquiry</p>
+        <h1 style="margin:0;font-size:25px;line-height:32px;">A visitor sent you a message</h1>
+      </div>
+      <div style="padding:28px;">
+        <p style="margin:0 0 20px;font-size:16px;line-height:24px;"><strong style="color:#171717;">${safeName}</strong> would like to hear from you.</p>
+        <table role="presentation" style="width:100%;border-collapse:collapse;margin:0 0 22px;font-size:14px;line-height:20px;">
+          <tr><td style="width:76px;padding:10px 0;border-top:1px solid #e5e5e5;color:#737373;">Name</td><td style="padding:10px 0;border-top:1px solid #e5e5e5;color:#171717;font-weight:600;">${safeName}</td></tr>
+          <tr><td style="width:76px;padding:10px 0;border-top:1px solid #e5e5e5;color:#737373;">Email</td><td style="padding:10px 0;border-top:1px solid #e5e5e5;color:#171717;font-weight:600;">${safeEmail}</td></tr>
+        </table>
+        <p style="margin:0 0 8px;font-size:12px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:#737373;">Message</p>
+        <div style="padding:16px 18px;border-left:3px solid #171717;background:#f5f5f5;border-radius:0 8px 8px 0;font-size:15px;line-height:24px;">${safeMessage}</div>
+        <p style="margin:24px 0 0;color:#525252;font-size:14px;line-height:20px;">Use your email client’s Reply action to respond directly to ${safeName}.</p>
+      </div>
+    </div>`);
+
+  const autoReplyHtml = emailShell(`
+    <div style="overflow:hidden;background:#ffffff;border:1px solid #e5e5e5;border-radius:16px;">
+      <div style="padding:24px 28px;background:#171717;color:#ffffff;">
+        <p style="margin:0 0 6px;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#bdbdbd;">Message received</p>
+        <h1 style="margin:0;font-size:25px;line-height:32px;">Thanks for getting in touch, ${safeName}.</h1>
+      </div>
+      <div style="padding:28px;font-size:16px;line-height:25px;">
+        <p style="margin:0 0 16px;">I’ve received your message and will reply within 1–2 business days.</p>
+        <p style="margin:0 0 8px;font-size:12px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:#737373;">Your message</p>
+        <div style="padding:16px 18px;border-left:3px solid #171717;background:#f5f5f5;border-radius:0 8px 8px 0;">${safeMessage}</div>
+        <p style="margin:24px 0 0;">Best regards,<br /><strong>Subash Lama Tamang</strong></p>
+      </div>
+    </div>`);
 
   try {
     const { error } = await resend.emails.send(
@@ -125,8 +186,8 @@ export async function POST(request: Request) {
         to: [receiveEmail],
         replyTo: email,
         subject: `Portfolio message from ${safeSubjectName}`,
-        text: `New portfolio message\n\nFrom: ${name} <${email}>\n\n${message}`,
-        html: `<div style="font-family:Arial,sans-serif"><h2>New portfolio message</h2><p><strong>From:</strong> ${safeName} (${safeEmail})</p><p>${safeMessage}</p></div>`,
+        text: `NEW WEBSITE ENQUIRY\n\nFrom: ${name}\nEmail: ${email}\n\nMESSAGE\n${message}\n\nReply directly to this email to respond.`,
+        html: ownerEmailHtml,
       },
       { idempotencyKey: `contact-owner-${submissionId}` },
     );
@@ -134,7 +195,10 @@ export async function POST(request: Request) {
     if (error) throw new Error(error.message);
   } catch (error) {
     console.error("Contact notification email failed:", error);
-    return Response.json({ error: "Unable to send your message right now." }, { status: 502 });
+    return Response.json(
+      { error: "Unable to send your message right now." },
+      { status: 502 },
+    );
   }
 
   // This is intentionally best-effort: a failed acknowledgement must not hide a
@@ -145,8 +209,8 @@ export async function POST(request: Request) {
         from: `${senderName} <${senderEmail}>`,
         to: [email],
         subject: `Thanks for contacting ${senderName}`,
-        text: `Hi ${name},\n\nThanks for reaching out. I received your message and will get back to you within 1–2 business days.\n\nBest regards,\nSubash`,
-        html: `<div style="font-family:Arial,sans-serif;max-width:600px;margin:auto"><h1>Thanks for reaching out</h1><p>Hi ${safeName},</p><p>I received your message and will get back to you within 1–2 business days.</p><p>Best regards,<br /><strong>Subash</strong></p></div>`,
+        text: `Hi ${name},\n\nThanks for getting in touch. I've received your message and will reply within 1–2 business days.\n\nYour message:\n${message}\n\nBest regards,\nSubash Lama Tamang`,
+        html: autoReplyHtml,
         headers: {
           "Auto-Submitted": "auto-replied",
           "X-Auto-Response-Suppress": "All",
