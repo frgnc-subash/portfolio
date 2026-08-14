@@ -3,57 +3,105 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --bg-primary: #ffffff;
-  --text-primary: #1a1a1a;
-  --text-secondary: #6b7280;
-  --focus-ring: #2563eb;
-  --accent-active: #000000;
-  --accent-brand: #000000;
-  --selection-bg: #b2ceee;
-  --selection-text: #080808;
+    --bg-primary: #ffffff;
+    --text-primary: #1a1a1a;
+    --text-secondary: #6b7280;
+    --focus-ring: #2563eb;
+    --accent-active: #000000;
+    --accent-brand: #000000;
+    --selection-bg: #b2ceee;
+    --selection-text: #080808;
 }
 
 .dark {
-  --bg-primary: #080808;
-  --text-primary: #bdbdbd;
-  --text-secondary: #949494;
-  --text-bold: #eeeeee;
-  --focus-ring: #93c5fd;
-  --accent-active: #80a0ff;
-  --accent-brand: #ae81ff;
-  --selection-bg: #b2ceee;
-  --selection-text: #080808;
+    --bg-primary: #080808;
+    --text-primary: #bdbdbd;
+    --text-secondary: #949494;
+    --text-bold: #eeeeee;
+    --focus-ring: #93c5fd;
+    --accent-active: #80a0ff;
+    --accent-brand: #ae81ff;
+    --selection-bg: #b2ceee;
+    --selection-text: #080808;
 }
 
-body { background-color: var(--bg-primary); color: var(--text-primary); transition: background-color .3s ease, color .3s ease; }
-::selection { background-color: var(--selection-bg); color: var(--selection-text); }
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease;
+}
+::selection {
+    background-color: var(--selection-bg);
+    color: var(--selection-text);
+}
 
 /* Tailwind's gray-300/400 values are too faint for small text on white. Keep
    the dark theme untouched while bringing the light theme to readable contrast. */
-html:not(.dark) .text-gray-300 { color: #6b7280; }
-html:not(.dark) .text-gray-400 { color: #4b5563; }
-html:not(.dark) .border-gray-100 { border-color: #e5e7eb; }
+html:not(.dark) .text-gray-300 {
+    color: #6b7280;
+}
+html:not(.dark) .text-gray-400 {
+    color: #4b5563;
+}
+html:not(.dark) .border-gray-100 {
+    border-color: #e5e7eb;
+}
 
 @media (hover: hover) {
-  /* The default light-gray hover colors are nearly indistinguishable from a
+    /* The default light-gray hover colors are nearly indistinguishable from a
      white surface. These overrides make cards and list rows feel interactive. */
-  html:not(.dark) .hover\:bg-gray-50:hover { background-color: #e9edf2; }
-  html:not(.dark) .hover\:bg-gray-50\/50:hover { background-color: #f1f5f9; }
-  html:not(.dark) .hover\:border-gray-300:hover { border-color: #94a3b8; }
-  html:not(.dark) .hover\:shadow-sm:hover { box-shadow: 0 8px 20px rgb(15 23 42 / 0.10); }
-  html:not(.dark) .hover\:shadow-md:hover { box-shadow: 0 12px 26px rgb(15 23 42 / 0.12); }
+    html:not(.dark) .hover\:bg-gray-50:hover {
+        background-color: #e9edf2;
+    }
+    html:not(.dark) .hover\:bg-gray-50\/50:hover {
+        background-color: #f1f5f9;
+    }
+    html:not(.dark) .hover\:border-gray-300:hover {
+        border-color: #94a3b8;
+    }
+    html:not(.dark) .hover\:shadow-sm:hover {
+        box-shadow: 0 8px 20px rgb(15 23 42 / 0.1);
+    }
+    html:not(.dark) .hover\:shadow-md:hover {
+        box-shadow: 0 12px 26px rgb(15 23 42 / 0.12);
+    }
 }
 
 input::placeholder,
-textarea::placeholder { color: #6b7280; opacity: 1; }
+textarea::placeholder {
+    color: #6b7280;
+    opacity: 1;
+}
 .dark input::placeholder,
-.dark textarea::placeholder { color: #9ca3af; }
-
-:where(a, button, input, textarea):focus-visible {
-  outline: 2px solid var(--focus-ring);
-  outline-offset: 2px;
+.dark textarea::placeholder {
+    color: #9ca3af;
 }
 
-.loader-progress-bar { width: 100%; transform-origin: left; animation: loader-fill .85s cubic-bezier(.65,0,.35,1) forwards; }
-@keyframes loader-fill { 0% { transform: scaleX(0); } 50% { transform: scaleX(.65); } 100% { transform: scaleX(1); } }
-@media (prefers-reduced-motion: reduce) { .loader-progress-bar { animation-duration: .4s; } }
+:where(a, button, input, textarea):focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
+}
+
+.loader-progress-bar {
+    width: 100%;
+    transform-origin: left;
+    animation: loader-fill 0.85s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+@keyframes loader-fill {
+    0% {
+        transform: scaleX(0);
+    }
+    50% {
+        transform: scaleX(0.65);
+    }
+    100% {
+        transform: scaleX(1);
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    .loader-progress-bar {
+        animation-duration: 0.4s;
+    }
+}

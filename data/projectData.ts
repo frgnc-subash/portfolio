@@ -17,7 +17,8 @@ export const PROJECTS: Project[] = [
   {
     id: "2",
     title: "Altigo Himalayan Treks",
-    description: "A commercial e-commerce website promoting & featuring tourism in Nepal",
+    description:
+      "A commercial e-commerce website promoting & featuring tourism in Nepal",
     tech: ["NextJs", "TypeScript", "React"],
     link: "https://altigohimalayantreks.com",
     github: "https://github.com/frgnc-subash/altigo-himalayan-treks",
@@ -27,7 +28,8 @@ export const PROJECTS: Project[] = [
   {
     id: "3",
     title: "Nixcraft",
-    description: "My declarative NixOS configuration and personal development environment.",
+    description:
+      "My declarative NixOS configuration and personal development environment.",
     tech: ["Nix", "NixOS", "Home Manager"],
     link: "https://github.com/frgnc-subash/nixcraft",
     github: "https://github.com/frgnc-subash/nixcraft",
@@ -36,7 +38,8 @@ export const PROJECTS: Project[] = [
   {
     id: "4",
     title: "Architectfolio",
-    description: "A minimal and slick portfolio designed for my Architect Brother.",
+    description:
+      "A minimal and slick portfolio designed for my Architect Brother.",
     tech: ["React", "Typescript", "Minimal"],
     link: "https://sajan-lama.vercel.app",
     github: "https://github.com/frgnc-subash",

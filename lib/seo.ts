@@ -15,7 +15,11 @@ interface SeoOptions {
   jsonLd?: Record<string, unknown>;
 }
 
-const setMeta = (selector: string, attribute: "content" | "href", value: string) => {
+const setMeta = (
+  selector: string,
+  attribute: "content" | "href",
+  value: string,
+) => {
   const element = document.querySelector(selector);
   if (element) element.setAttribute(attribute, value);
 };
@@ -23,7 +27,7 @@ const setMeta = (selector: string, attribute: "content" | "href", value: string)
 const upsertMeta = (
   key: "name" | "property",
   name: string,
-  content: string
+  content: string,
 ) => {
   let element = document.querySelector(`meta[${key}="${name}"]`);
 
@@ -46,7 +50,9 @@ export const useSeo = ({
 }: SeoOptions) => {
   useEffect(() => {
     const canonicalUrl = new URL(path, SITE_URL).toString();
-    const fullTitle = title.includes(SITE_NAME) ? title : `${title} | ${SITE_NAME}`;
+    const fullTitle = title.includes(SITE_NAME)
+      ? title
+      : `${title} | ${SITE_NAME}`;
 
     document.title = fullTitle;
 
@@ -64,7 +70,9 @@ export const useSeo = ({
 
     setMeta('link[rel="canonical"]', "href", canonicalUrl);
 
-    const existingJsonLd = document.querySelector('script[data-seo-jsonld="page"]');
+    const existingJsonLd = document.querySelector(
+      'script[data-seo-jsonld="page"]',
+    );
     existingJsonLd?.remove();
 
     if (jsonLd) {

@@ -80,8 +80,8 @@ const Background = () => {
         if (x >= 0 && x <= w && y >= 0 && y <= h && alpha > 0) {
           ctx.beginPath();
           ctx.fillStyle = isDark
-            ? `rgba(255, 255, 255, ${alpha})` 
-            : `rgba(30, 41, 59, ${alpha})`; 
+            ? `rgba(255, 255, 255, ${alpha})`
+            : `rgba(30, 41, 59, ${alpha})`;
 
           ctx.arc(x, y, radius > 0 ? radius : 0, 0, Math.PI * 2);
           ctx.fill();

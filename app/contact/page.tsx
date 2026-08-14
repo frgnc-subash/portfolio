@@ -11,7 +11,12 @@ import {
   ArrowUpRight,
   AlertCircle,
 } from "lucide-react";
-import { FiGithub as Github, FiLinkedin as Linkedin, FiInstagram as Instagram, FiFacebook as Facebook } from "react-icons/fi";
+import {
+  FiGithub as Github,
+  FiLinkedin as Linkedin,
+  FiInstagram as Instagram,
+  FiFacebook as Facebook,
+} from "react-icons/fi";
 import { useSeo } from "@/lib/seo";
 
 const Contact = () => {
@@ -23,8 +28,15 @@ const Contact = () => {
   });
 
   const [copied, setCopied] = useState(false);
-  const [formState, setFormState] = useState({ name: "", email: "", message: "", website: "" });
-  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [formState, setFormState] = useState({
+    name: "",
+    email: "",
+    message: "",
+    website: "",
+  });
+  const [status, setStatus] = useState<
+    "idle" | "sending" | "success" | "error"
+  >("idle");
   const [errorMessage, setErrorMessage] = useState("");
   const submissionIdRef = useRef<string | null>(null);
 
@@ -54,7 +66,10 @@ const Contact = () => {
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...formState, submissionId: submissionIdRef.current }),
+        body: JSON.stringify({
+          ...formState,
+          submissionId: submissionIdRef.current,
+        }),
       });
 
       if (response.ok) {
@@ -70,7 +85,9 @@ const Contact = () => {
       }
     } catch {
       setStatus("error");
-      setErrorMessage("Unable to send your message right now. Please try again.");
+      setErrorMessage(
+        "Unable to send your message right now. Please try again.",
+      );
       setTimeout(() => setStatus("idle"), 4000);
     }
   };
@@ -110,11 +127,12 @@ const Contact = () => {
     <div className="max-w-2xl mx-auto py-8 sm:py-12 animate-in fade-in slide-in-from-bottom-4 duration-500">
       <div className="mb-12 px-4 sm:px-0">
         <h1 className="text-3xl font-bold tracking-tight text-black dark:text-[#e4e4e4] mb-3 flex items-center gap-2">
-          Let&apos;s Connect <Sparkles size={20} className="text-yellow-500 animate-pulse" />
+          Let&apos;s Connect{" "}
+          <Sparkles size={20} className="text-yellow-500 animate-pulse" />
         </h1>
         <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-sm sm:text-base">
-          Whether you have a project in mind, a question about my work, or just want to say hi — I&apos;m
-          always ready to chat.
+          Whether you have a project in mind, a question about my work, or just
+          want to say hi — I&apos;m always ready to chat.
         </p>
       </div>
 
@@ -127,19 +145,37 @@ const Contact = () => {
                 <Mail size={19} />
               </div>
               <div className="min-w-0">
-                <p className="mb-1 text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">Mail me at</p>
-                <a href={`mailto:${email}`} className="block break-all text-sm font-medium text-black transition-colors hover:text-blue-600 dark:text-[#e4e4e4] dark:hover:text-blue-400 sm:text-base">
+                <p className="mb-1 text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">
+                  Mail me at
+                </p>
+                <a
+                  href={`mailto:${email}`}
+                  className="block break-all text-sm font-medium text-black transition-colors hover:text-blue-600 dark:text-[#e4e4e4] dark:hover:text-blue-400 sm:text-base"
+                >
                   {email}
                 </a>
               </div>
             </div>
-            <button onClick={handleCopy} aria-label="Copy email address" className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-gray-200 bg-gray-50 text-gray-600 transition-all hover:border-black hover:bg-black hover:text-white dark:border-[#323437] dark:bg-[#1e1e1e] dark:text-gray-300 dark:hover:border-[#e4e4e4] dark:hover:bg-[#e4e4e4] dark:hover:text-black">
+            <button
+              onClick={handleCopy}
+              aria-label="Copy email address"
+              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-gray-200 bg-gray-50 text-gray-600 transition-all hover:border-black hover:bg-black hover:text-white dark:border-[#323437] dark:bg-[#1e1e1e] dark:text-gray-300 dark:hover:border-[#e4e4e4] dark:hover:bg-[#e4e4e4] dark:hover:text-black"
+            >
               {copied ? <Check size={17} /> : <Copy size={17} />}
             </button>
           </div>
           <div className="relative mt-5 flex flex-wrap items-center justify-between gap-3 border-t border-gray-100 pt-4 text-xs dark:border-[#1e1e1e]">
-            <span className="text-gray-500 dark:text-gray-400">{copied ? "Email copied to clipboard" : "Might take at least 1–2 business days"}</span>
-            <a href={`mailto:${email}`} className="inline-flex items-center gap-1 font-medium text-gray-700 transition-colors hover:text-black dark:text-gray-300 dark:hover:text-white">Open mail client <ArrowUpRight size={13} /></a>
+            <span className="text-gray-500 dark:text-gray-400">
+              {copied
+                ? "Email copied to clipboard"
+                : "Might take at least 1–2 business days"}
+            </span>
+            <a
+              href={`mailto:${email}`}
+              className="inline-flex items-center gap-1 font-medium text-gray-700 transition-colors hover:text-black dark:text-gray-300 dark:hover:text-white"
+            >
+              Open mail client <ArrowUpRight size={13} />
+            </a>
           </div>
         </section>
 
@@ -167,7 +203,9 @@ const Contact = () => {
                     <span className="text-sm font-semibold text-black dark:text-[#e4e4e4]">
                       {label}
                     </span>
-                    <span className="text-xs text-gray-500 dark:text-gray-400">{handle}</span>
+                    <span className="text-xs text-gray-500 dark:text-gray-400">
+                      {handle}
+                    </span>
                   </div>
                 </div>
                 <ArrowUpRight
@@ -223,7 +261,9 @@ const Contact = () => {
               type="text"
               name="website"
               value={formState.website}
-              onChange={(e) => setFormState({ ...formState, website: e.target.value })}
+              onChange={(e) =>
+                setFormState({ ...formState, website: e.target.value })
+              }
               tabIndex={-1}
               autoComplete="off"
               className="sr-only"
@@ -243,7 +283,8 @@ const Contact = () => {
                 )}
                 {status === "sending" && (
                   <>
-                    <p>Sending...</p> <Send size={16} className="animate-pulse" />
+                    <p>Sending...</p>{" "}
+                    <Send size={16} className="animate-pulse" />
                   </>
                 )}
                 {status === "success" && (
@@ -265,7 +306,8 @@ const Contact = () => {
               )}
               {status === "error" && (
                 <span className="text-xs text-red-500 flex items-center gap-1">
-                  <AlertCircle size={14} /> {errorMessage || "Error sending message."}
+                  <AlertCircle size={14} />{" "}
+                  {errorMessage || "Error sending message."}
                 </span>
               )}
             </div>

@@ -15,14 +15,22 @@ export default function Oneko({
     const script = document.createElement("script");
     script.id = "oneko-script";
     script.src = "/oneko.js";
-    script.dataset.cat = catImage; 
+    script.dataset.cat = catImage;
     script.dataset.persistPosition = "false";
 
-    const anchor = anchorSelector ? document.querySelector(anchorSelector) : null;
+    const anchor = anchorSelector
+      ? document.querySelector(anchorSelector)
+      : null;
     if (anchor) {
       const rect = anchor.getBoundingClientRect();
-      const startX = Math.min(Math.max(16, rect.right + anchorOffsetX), Math.max(16, window.innerWidth - 16));
-      const startY = Math.min(Math.max(16, rect.top + rect.height / 2), Math.max(16, window.innerHeight - 16));
+      const startX = Math.min(
+        Math.max(16, rect.right + anchorOffsetX),
+        Math.max(16, window.innerWidth - 16),
+      );
+      const startY = Math.min(
+        Math.max(16, rect.top + rect.height / 2),
+        Math.max(16, window.innerHeight - 16),
+      );
       script.dataset.startX = String(startX);
       script.dataset.startY = String(startY);
     }

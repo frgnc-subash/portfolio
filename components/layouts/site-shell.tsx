@@ -12,7 +12,9 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
       <div className="min-h-screen flex justify-center w-full">
         <Background />
         <div className="w-full max-w-2xl min-h-screen flex flex-col">
-          <div className="relative z-20"><Navbar /></div>
+          <div className="relative z-20">
+            <Navbar />
+          </div>
           <main className="grow w-full px-4">{children}</main>
           <Footer />
         </div>

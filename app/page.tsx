@@ -3,14 +3,31 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Clock, FileText, FolderGit2, Layers, MapPin, Network } from "lucide-react";
-import { SiCss, SiFigma, SiHtml5, SiJavascript, SiNextdotjs, SiPrisma, SiReact, SiTailwindcss } from "react-icons/si";
+import {
+  ArrowRight,
+  Clock,
+  FileText,
+  FolderGit2,
+  Layers,
+  MapPin,
+  Network,
+} from "lucide-react";
+import {
+  SiCss,
+  SiFigma,
+  SiHtml5,
+  SiJavascript,
+  SiNextdotjs,
+  SiPrisma,
+  SiReact,
+  SiTailwindcss,
+} from "react-icons/si";
 import { PROJECTS } from "@/data/projectData";
 import { BLOG_POSTS } from "@/data/blogData";
 import Graph from "@/components/ui/graph";
 import { SITE_NAME, SITE_URL, useSeo } from "@/lib/seo";
 
-function Profile()  {
+function Profile() {
   const [isPfpHovered, setIsPfpHovered] = useState(false);
   const [time, setTime] = useState<string>("");
 
@@ -153,8 +170,7 @@ function Profile()  {
       </div>
     </div>
   );
-};
-
+}
 
 interface IndicatorStyle {
   top: number;
@@ -164,7 +180,7 @@ interface IndicatorStyle {
   opacity: number;
 }
 
-function RecentCards()  {
+function RecentCards() {
   const recentProjects = PROJECTS.slice(0, 3);
   const recentBlogs = BLOG_POSTS.slice(0, 3);
   const glassTitle =
@@ -268,7 +284,10 @@ function RecentCards()  {
           className="inline-flex items-center gap-1 text-xs font-medium text-gray-500 hover:text-black dark:text-gray-400 dark:hover:text-white transition-colors self-start ml-2.5 sm:ml-3 group"
         >
           View more projects
-          <ArrowRight size={12} className="group-hover:translate-x-0.5 transition-transform" />
+          <ArrowRight
+            size={12}
+            className="group-hover:translate-x-0.5 transition-transform"
+          />
         </Link>
       </div>
       <div className="flex flex-col gap-3 sm:gap-4">
@@ -317,15 +336,17 @@ function RecentCards()  {
           className="inline-flex items-center gap-1 text-xs font-medium text-gray-500 hover:text-black dark:text-gray-400 dark:hover:text-white transition-colors self-start ml-2.5 sm:ml-3 group"
         >
           See more articles
-          <ArrowRight size={12} className="group-hover:translate-x-0.5 transition-transform" />
+          <ArrowRight
+            size={12}
+            className="group-hover:translate-x-0.5 transition-transform"
+          />
         </Link>
       </div>
     </div>
   );
-};
+}
 
-
-function Stack()  {
+function Stack() {
   const tools = [
     { name: "HTML5", icon: <SiHtml5 size={32} />, color: "#E34F26" },
     { name: "CSS3", icon: <SiCss size={32} />, color: "#1572B6" },
@@ -385,10 +406,9 @@ function Stack()  {
       ))}
     </div>
   );
-};
+}
 
-
-export default function HomePage()  {
+export default function HomePage() {
   useSeo({
     title: "Full-Stack Developer Portfolio",
     description:
@@ -400,7 +420,13 @@ export default function HomePage()  {
       name: SITE_NAME,
       url: SITE_URL,
       jobTitle: "Full-Stack Developer",
-      knowsAbout: ["React", "Next.js", "TypeScript", "UI/UX Design", "Frontend Development"],
+      knowsAbout: [
+        "React",
+        "Next.js",
+        "TypeScript",
+        "UI/UX Design",
+        "Frontend Development",
+      ],
       sameAs: [
         "https://github.com/frgnc-subash",
         "https://linkedin.com/in/subash-lama-tamang",
@@ -442,4 +468,4 @@ export default function HomePage()  {
       </section>
     </div>
   );
-};
+}

@@ -16,7 +16,8 @@ const BlogPost = () => {
 
   useSeo({
     title: post?.title || "Post Not Found",
-    description: post?.excerpt || "The requested writing page could not be found.",
+    description:
+      post?.excerpt || "The requested writing page could not be found.",
     path: post?.slug || fullSlug,
     type: post ? "article" : "website",
     jsonLd: post
@@ -43,7 +44,9 @@ const BlogPost = () => {
   if (!post) {
     return (
       <div className="flex flex-col items-center justify-center min-h-[50vh] max-w-2xl mx-auto text-center px-4">
-        <h2 className="text-2xl font-bold text-black dark:text-white mb-4">Post not found</h2>
+        <h2 className="text-2xl font-bold text-black dark:text-white mb-4">
+          Post not found
+        </h2>
         <Link
           href="/blog"
           className="text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors underline"
@@ -60,7 +63,10 @@ const BlogPost = () => {
         href="/blog"
         className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-black dark:hover:text-white transition-colors mb-8 group"
       >
-        <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
+        <ArrowLeft
+          size={16}
+          className="group-hover:-translate-x-1 transition-transform"
+        />
         Back to Writing
       </Link>
 

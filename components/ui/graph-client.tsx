@@ -25,10 +25,10 @@ interface CustomNode extends NodeObject {
 const Graph = () => {
   const router = useRouter();
   const containerRef = useRef<HTMLDivElement>(null);
-  const graphRef =
-    useRef<ForceGraphMethods<NodeObject<CustomNode>, LinkObject<CustomNode>> | undefined>(
-      undefined
-    );
+  const graphRef = useRef<
+    | ForceGraphMethods<NodeObject<CustomNode>, LinkObject<CustomNode>>
+    | undefined
+  >(undefined);
   const pointerStartRef = useRef<{ x: number; y: number } | null>(null);
   const [dimensions, setDimensions] = useState({ w: 400, h: 300 });
   const [isDark, setIsDark] = useState(false);
@@ -80,7 +80,7 @@ const Graph = () => {
         { source: "about", target: "contact" },
       ],
     }),
-    []
+    [],
   );
 
   const colors = {
@@ -97,7 +97,10 @@ const Graph = () => {
     if (!graph || !container) return null;
 
     const rect = container.getBoundingClientRect();
-    const graphCoords = graph.screen2GraphCoords(clientX - rect.left, clientY - rect.top);
+    const graphCoords = graph.screen2GraphCoords(
+      clientX - rect.left,
+      clientY - rect.top,
+    );
     const zoom = graph.zoom() || 1;
     let nearestNode: CustomNode | null = null;
     let nearestDistance = Infinity;
@@ -105,7 +108,10 @@ const Graph = () => {
     for (const node of data.nodes as CustomNode[]) {
       if (!node.path || node.x == null || node.y == null) continue;
 
-      const distance = Math.hypot(graphCoords.x - node.x, graphCoords.y - node.y);
+      const distance = Math.hypot(
+        graphCoords.x - node.x,
+        graphCoords.y - node.y,
+      );
       const hitRadius = Math.max(node.val * 1.4, 20 / zoom);
 
       if (distance <= hitRadius && distance < nearestDistance) {
@@ -123,7 +129,9 @@ const Graph = () => {
 
   const handleClickCapture = (event: ReactMouseEvent<HTMLDivElement>) => {
     const start = pointerStartRef.current;
-    const movement = start ? Math.hypot(event.clientX - start.x, event.clientY - start.y) : 0;
+    const movement = start
+      ? Math.hypot(event.clientX - start.x, event.clientY - start.y)
+      : 0;
 
     if (movement > 6) return;
 
@@ -137,7 +145,10 @@ const Graph = () => {
 
   const handleMouseMove = (event: ReactMouseEvent<HTMLDivElement>) => {
     if (!containerRef.current) return;
-    containerRef.current.style.cursor = getNodeAtPoint(event.clientX, event.clientY)
+    containerRef.current.style.cursor = getNodeAtPoint(
+      event.clientX,
+      event.clientY,
+    )
       ? "pointer"
       : "grab";
   };
