@@ -97,54 +97,57 @@ function Profile() {
       </div>
 
       <div className="space-y-3 w-full">
-        <p className="text-sm sm:text-[15px] font-normal leading-relaxed text-gray-600 dark:text-gray-400 w-full text-left transition-colors duration-300">
-          Building{" "}
+        <p className="text-base sm:text-lg font-normal leading-relaxed text-gray-600 dark:text-gray-400 w-full text-left transition-colors duration-300">
+          I build{" "}
           <span
-            className={`font-medium transition-colors duration-300 ${
-              isPfpHovered ? "text-black dark:text-white" : ""
+            className={`font-medium transition-all duration-300 px-1.5 py-0.5 rounded ${
+              isPfpHovered
+                ? "bg-gray-100/80 dark:bg-white/10 backdrop-blur-sm text-gray-800 dark:text-gray-200"
+                : "text-gray-800 dark:text-gray-200"
             }`}
           >
-            digital products
+            practical web experiences
           </span>{" "}
-          with a focus on{" "}
+          as a{" "}
           <span
-            className={`font-medium transition-colors duration-300 ${
-              isPfpHovered ? "text-black dark:text-white" : ""
+            className={`font-medium transition-all duration-300 px-1.5 py-0.5 rounded ${
+              isPfpHovered
+                ? "bg-gray-100/80 dark:bg-white/10 backdrop-blur-sm text-gray-800 dark:text-gray-200"
+                : "text-gray-800 dark:text-gray-200"
             }`}
           >
-            design
+            full-stack developer
           </span>{" "}
           and{" "}
           <span
-            className={`font-medium transition-colors duration-300 ${
-              isPfpHovered ? "text-black dark:text-white" : ""
+            className={`font-medium transition-all duration-300 px-1.5 py-0.5 rounded ${
+              isPfpHovered
+                ? "bg-gray-100/80 dark:bg-white/10 backdrop-blur-sm text-gray-800 dark:text-gray-200"
+                : "text-gray-800 dark:text-gray-200"
             }`}
           >
-            performance
+            UI/UX designer
           </span>
-          . Currently exploring the intersection of{" "}
+          . And besides making the things available in the internet, I have a
+          great passion for{" "}
           <span
-            className={`font-medium transition-colors duration-300 ${
-              isPfpHovered ? "text-[#58c4dc] dark:text-[#61dafb]" : ""
+            className={`font-medium transition-all duration-300 px-1.5 py-0.5 rounded ${
+              isPfpHovered
+                ? "bg-gray-100/80 dark:bg-white/10 backdrop-blur-sm text-gray-800 dark:text-gray-200"
+                : "text-gray-800 dark:text-gray-200"
             }`}
           >
-            React
-          </span>
-          ,{" "}
+            linux
+          </span>{" "}
+          and{" "}
           <span
-            className={`font-medium transition-colors duration-300 ${
-              isPfpHovered ? "text-purple-600 dark:text-purple-400" : ""
+            className={`font-medium transition-all duration-300 px-1.5 py-0.5 rounded ${
+              isPfpHovered
+                ? "bg-gray-100/80 dark:bg-white/10 backdrop-blur-sm text-gray-800 dark:text-gray-200"
+                : "text-gray-800 dark:text-gray-200"
             }`}
           >
-            Graph visualization
-          </span>
-          , and{" "}
-          <span
-            className={`font-medium transition-colors duration-300 ${
-              isPfpHovered ? "text-black dark:text-white" : ""
-            }`}
-          >
-            minimalist UI
+            linux ricing
           </span>
           .
         </p>
@@ -186,7 +189,6 @@ function RecentCards() {
   const glassTitle =
     "inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-gray-50/80 dark:bg-[#1e1e1e]/60 backdrop-blur-md text-xs font-semibold text-black dark:text-[#e4e4e4]";
 
-  // --- Projects hover indicator ---
   const projectsListRef = useRef<HTMLDivElement>(null);
   const [projectIndicator, setProjectIndicator] = useState<IndicatorStyle>({
     top: 0,
@@ -210,7 +212,6 @@ function RecentCards() {
     setProjectIndicator((prev) => ({ ...prev, opacity: 0 }));
   }, []);
 
-  // --- Blog hover indicator ---
   const blogsListRef = useRef<HTMLDivElement>(null);
   const [blogIndicator, setBlogIndicator] = useState<IndicatorStyle>({
     top: 0,
@@ -260,7 +261,7 @@ function RecentCards() {
             aria-hidden="true"
           />
           {recentProjects.map((project) => (
-            <a
+            <Link
               key={project.id}
               href={project.link}
               target="_blank"
@@ -276,7 +277,7 @@ function RecentCards() {
                   {project.description}
                 </span>
               </div>
-            </a>
+            </Link>
           ))}
         </div>
         <Link
