@@ -2,7 +2,7 @@ const GITHUB_USERNAME = "frgnc-subash";
 const UPSTREAM_URL = `https://github-contributions-api.jogruber.de/v4/${GITHUB_USERNAME}?y=last`;
 const REVALIDATE_SECONDS = 3600;
 
-export const revalidate = REVALIDATE_SECONDS;
+export const revalidate = 3600;
 
 export async function GET() {
   try {

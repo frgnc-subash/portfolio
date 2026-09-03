@@ -68,9 +68,8 @@ function PolaroidPfp({
       onMouseLeave={onHoverEnd}
     >
       <div
-        className={`w-52 rounded-sm border border-gray-200 bg-white p-2 pb-4 shadow-lg shadow-black/10 transition-transform duration-300 ease-out dark:border-[#323437] dark:bg-[#111113] dark:shadow-black/50 ${
-          isHovered ? "-translate-y-1 rotate-0" : "rotate-[-4deg]"
-        }`}
+        className={`w-52 rounded-sm border border-gray-200 bg-white p-2 pb-4 shadow-lg shadow-black/10 transition-transform duration-300 ease-out dark:border-[#323437] dark:bg-[#111113] dark:shadow-black/50 ${isHovered ? "-translate-y-1 rotate-0" : "rotate-[-4deg]"
+          }`}
       >
         <PfpImage
           size={208}
