@@ -1,8 +1,8 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import ThemeToggle from "./theme-toggle";
@@ -12,6 +12,34 @@ const navLinks = [
   { href: "/blog", label: "blog" },
   { href: "/contact", label: "contact" },
 ];
+
+function WordmarkLogo({ height }: { height: number }) {
+  const imgClass =
+    "w-auto [image-rendering:pixelated] transition-all duration-200 ease-out group-hover:scale-105 group-hover:drop-shadow-[0_0_6px_rgba(174,129,255,0.6)]";
+
+  return (
+    <>
+      <Image
+        src="/logo-light.png"
+        alt="Axosis"
+        width={245}
+        height={80}
+        unoptimized
+        style={{ height }}
+        className={`${imgClass} block dark:hidden`}
+      />
+      <Image
+        src="/logo-dark.png"
+        alt="Axosis"
+        width={245}
+        height={80}
+        unoptimized
+        style={{ height }}
+        className={`${imgClass} hidden dark:block`}
+      />
+    </>
+  );
+}
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -64,20 +92,7 @@ export default function Navbar() {
   return (
     <nav className="relative flex items-center justify-between w-full max-w-2xl mx-auto px-4 py-4 sm:py-6 bg-transparent z-50">
       <Link href="/" className="group shrink-0 relative z-20">
-        <Image
-          src="/light.png"
-          alt="Logo"
-          width={96}
-          height={24}
-          className="h-5 sm:h-6 w-auto block dark:hidden"
-        />
-        <Image
-          src="/dark.png"
-          alt="Logo"
-          width={96}
-          height={24}
-          className="h-5 sm:h-6 w-auto hidden dark:block"
-        />
+        <WordmarkLogo height={36} />
       </Link>
 
       <div className="flex items-center gap-2 sm:gap-4">
@@ -101,6 +116,7 @@ export default function Navbar() {
                 href={link.href}
                 onMouseEnter={(event) => moveIndicator(event.currentTarget)}
                 className={desktopLinkClass(link.href)}
+                style={{ fontFamily: "'Iosevka', monospace" }}
               >
                 {link.label}
               </Link>
@@ -131,21 +147,12 @@ export default function Navbar() {
         className={`fixed left-0 top-0 z-50 h-dvh w-72 max-w-[82vw] border-r border-gray-200 bg-white/95 px-6 py-5 shadow-2xl backdrop-blur-md transition-transform duration-300 ease-out dark:border-[#323437] dark:bg-[#080808]/95 sm:hidden ${isOpen ? "translate-x-0" : "-translate-x-full"}`}
       >
         <div className="mb-10 flex items-center justify-between">
-          <Link href="/" className="shrink-0" onClick={() => setIsOpen(false)}>
-            <Image
-              src="/light.png"
-              alt="Logo"
-              width={80}
-              height={20}
-              className="h-5 w-auto block dark:hidden"
-            />
-            <Image
-              src="/dark.png"
-              alt="Logo"
-              width={80}
-              height={20}
-              className="h-5 w-auto hidden dark:block"
-            />
+          <Link
+            href="/"
+            className="group shrink-0"
+            onClick={() => setIsOpen(false)}
+          >
+            <WordmarkLogo height={30} />
           </Link>
           <button
             onClick={() => setIsOpen(false)}
@@ -161,6 +168,7 @@ export default function Navbar() {
               key={link.href}
               href={link.href}
               onClick={() => setIsOpen(false)}
+              style={{ fontFamily: "'Iosevka', monospace" }}
               className={`rounded-md px-3 py-3 text-base font-semibold transition-colors duration-200 ${isActive(link.href) ? "bg-gray-100 text-black dark:bg-[#1e1e1e] dark:text-(--accent-active) font-bold" : "text-gray-600 hover:bg-gray-100 hover:text-black dark:text-(--text-secondary) dark:hover:bg-[#1e1e1e] dark:hover:text-[#e4e4e4]"}`}
             >
               {link.label}

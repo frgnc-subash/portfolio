@@ -7,7 +7,7 @@ const Graph = dynamic(() => import("./graph-client"), {
   loading: () => (
     <div
       aria-label="Loading navigation map"
-      className="h-[300px] w-full animate-pulse rounded-xl border border-gray-200 bg-white dark:border-[#323437] dark:bg-[#080808]"
+      className="h-[260px] w-full animate-pulse rounded-lg border border-gray-300 bg-white dark:border-[#3a3a3c] dark:bg-[#0a0a0a]"
     />
   ),
 });

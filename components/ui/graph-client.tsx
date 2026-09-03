@@ -13,14 +13,18 @@ import type {
   NodeObject,
 } from "react-force-graph-2d";
 import { useRouter } from "next/navigation";
+import { PROJECTS } from "@/data/projectData";
+import { BLOG_POSTS } from "@/data/blogData";
 
 interface CustomNode extends NodeObject {
   id: string;
   name: string;
   path?: string;
-  val: number;
-  group: "main" | "page";
+  external?: boolean;
 }
+
+const NODE_VAL = 6;
+const TRUNK_IDS = new Set(["about", "projects", "blog", "contact"]);
 
 const Graph = () => {
   const router = useRouter();
@@ -30,8 +34,9 @@ const Graph = () => {
     | undefined
   >(undefined);
   const pointerStartRef = useRef<{ x: number; y: number } | null>(null);
-  const [dimensions, setDimensions] = useState({ w: 400, h: 300 });
+  const [dimensions, setDimensions] = useState({ w: 400, h: 260 });
   const [isDark, setIsDark] = useState(false);
+  const [hoveredId, setHoveredId] = useState<string | null>(null);
 
   useEffect(() => {
     const updateTheme = () =>
@@ -48,45 +53,64 @@ const Graph = () => {
   useEffect(() => {
     if (!containerRef.current) return;
     const ro = new ResizeObserver(([entry]) => {
-      setDimensions({ w: entry.contentRect.width, h: 300 });
+      setDimensions({ w: entry.contentRect.width, h: 260 });
     });
     ro.observe(containerRef.current);
     return () => ro.disconnect();
   }, []);
 
-  const data = useMemo<GraphData<CustomNode>>(
-    () => ({
-      nodes: [
-        { id: "about", name: "About", path: "/", val: 12, group: "main" },
-        {
-          id: "projects",
-          name: "Projects",
-          path: "/projects",
-          val: 6,
-          group: "page",
-        },
-        { id: "blog", name: "Blog", path: "/blog", val: 6, group: "page" },
-        {
-          id: "contact",
-          name: "Contact",
-          path: "/contact",
-          val: 6,
-          group: "page",
-        },
-      ],
-      links: [
-        { source: "about", target: "projects" },
-        { source: "about", target: "blog" },
-        { source: "about", target: "contact" },
-      ],
-    }),
-    [],
-  );
+  const data = useMemo<GraphData<CustomNode>>(() => {
+    const nodes: CustomNode[] = [
+      { id: "about", name: "About", path: "/", val: NODE_VAL },
+      { id: "projects", name: "Projects", path: "/projects", val: NODE_VAL },
+      { id: "blog", name: "Blog", path: "/blog", val: NODE_VAL },
+      { id: "contact", name: "Contact", path: "/contact", val: NODE_VAL },
+      ...PROJECTS.map(
+        (project): CustomNode => ({
+          id: `project-${project.id}`,
+          name: project.title,
+          path: project.link,
+          external: true,
+          val: NODE_VAL,
+        }),
+      ),
+      ...BLOG_POSTS.map(
+        (post): CustomNode => ({
+          id: `blog-${post.id}`,
+          name: post.title,
+          path: post.slug,
+          val: NODE_VAL,
+        }),
+      ),
+    ];
+
+    const links = [
+      { source: "about", target: "projects" },
+      { source: "about", target: "blog" },
+      { source: "about", target: "contact" },
+      ...PROJECTS.map((project) => ({
+        source: "projects",
+        target: `project-${project.id}`,
+      })),
+      ...BLOG_POSTS.map((post) => ({
+        source: "blog",
+        target: `blog-${post.id}`,
+      })),
+    ];
+
+    return { nodes, links };
+  }, []);
+
+  useEffect(() => {
+    const graph = graphRef.current;
+    if (!graph) return;
+    graph.d3Force("charge")?.strength(-90);
+    graph.d3Force("link")?.distance(38);
+  }, []);
 
   const colors = {
     bg: isDark ? "#080808" : "#ffffff",
-    main: isDark ? "#c084fc" : "#7c3aed",
-    page: isDark ? "#60a5fa" : "#2563eb",
+    node: isDark ? "#c084fc" : "#7c3aed",
     link: isDark ? "#374151" : "#cbd5e1",
     text: isDark ? "#e5e7eb" : "#111827",
   };
@@ -112,7 +136,7 @@ const Graph = () => {
         graphCoords.x - node.x,
         graphCoords.y - node.y,
       );
-      const hitRadius = Math.max(node.val * 1.4, 20 / zoom);
+      const hitRadius = Math.max((node.val ?? NODE_VAL) * 1.4, 20 / zoom);
 
       if (distance <= hitRadius && distance < nearestDistance) {
         nearestNode = node;
@@ -121,6 +145,15 @@ const Graph = () => {
     }
 
     return nearestNode;
+  };
+
+  const navigateToNode = (node: CustomNode) => {
+    if (!node.path) return;
+    if (node.external) {
+      window.open(node.path, "_blank", "noopener,noreferrer");
+    } else {
+      router.push(node.path);
+    }
   };
 
   const handlePointerDown = (event: ReactPointerEvent<HTMLDivElement>) => {
@@ -140,7 +173,7 @@ const Graph = () => {
 
     event.preventDefault();
     event.stopPropagation();
-    router.push(node.path);
+    navigateToNode(node);
   };
 
   const handleMouseMove = (event: ReactMouseEvent<HTMLDivElement>) => {
@@ -159,7 +192,7 @@ const Graph = () => {
       onPointerDown={handlePointerDown}
       onClickCapture={handleClickCapture}
       onMouseMove={handleMouseMove}
-      className="relative w-full rounded-xl overflow-hidden border border-gray-200 dark:border-[#323437] bg-white dark:bg-[#080808] cursor-grab active:cursor-grabbing"
+      className="relative w-full rounded-lg overflow-hidden border border-gray-300 dark:border-[#3a3a3c] bg-white dark:bg-[#0a0a0a] shadow-[3px_3px_0_0_rgba(0,0,0,0.06)] dark:shadow-[3px_3px_0_0_rgba(255,255,255,0.04)] cursor-grab active:cursor-grabbing"
     >
       <ForceGraph2D<CustomNode>
         ref={graphRef}
@@ -170,32 +203,31 @@ const Graph = () => {
         enablePointerInteraction
         enablePanInteraction
         enableZoomInteraction
-        cooldownTicks={100}
-        d3VelocityDecay={0.3}
+        cooldownTicks={150}
+        d3VelocityDecay={0.35}
         d3AlphaDecay={0.02}
         linkColor={() => colors.link}
         linkWidth={1.5}
         linkCurvature={0}
-        onNodeClick={(node) => {
-          if (node.path) router.push(node.path);
-        }}
+        onNodeClick={(node) => navigateToNode(node as CustomNode)}
         onNodeHover={(node) => {
           if (!containerRef.current) return;
           containerRef.current.style.cursor = node?.path ? "pointer" : "grab";
+          setHoveredId((node as CustomNode | null)?.id ?? null);
         }}
         nodeCanvasObject={(node, ctx, globalScale) => {
-          const r = node.val * 0.8;
-          const showLabel = globalScale > 0.6;
+          const customNode = node as CustomNode;
+          const r = (node.val ?? NODE_VAL) * 0.8;
+          const showLabel =
+            globalScale > 0.6 &&
+            (TRUNK_IDS.has(customNode.id) || customNode.id === hoveredId);
 
-          let fill = colors.page;
-          if (node.group === "main") fill = colors.main;
-
-          ctx.shadowColor = fill;
+          ctx.shadowColor = colors.node;
           ctx.shadowBlur = isDark ? 10 : 2;
 
           ctx.beginPath();
           ctx.arc(node.x!, node.y!, r, 0, Math.PI * 2);
-          ctx.fillStyle = fill;
+          ctx.fillStyle = colors.node;
           ctx.fill();
 
           ctx.shadowBlur = 0;
