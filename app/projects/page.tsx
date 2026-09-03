@@ -70,7 +70,10 @@ export default function ProjectsPage() {
               <h2 className="mb-3 text-lg font-bold text-black dark:text-[#e4e4e4]">
                 {project.title}
               </h2>
-              <p className="mb-4 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+              <p
+                style={{ fontFamily: "'Iosevka', monospace" }}
+                className="mb-4 text-sm leading-relaxed text-gray-600 dark:text-gray-400"
+              >
                 {project.description}
               </p>
               <div className="flex flex-wrap gap-2">

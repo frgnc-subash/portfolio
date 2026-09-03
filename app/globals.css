@@ -105,3 +105,21 @@ textarea::placeholder {
         animation-duration: 0.4s;
     }
 }
+
+.contributions-mask {
+    -webkit-mask-image: linear-gradient(
+        to right,
+        transparent,
+        black 4px,
+        black calc(100% - 4px),
+        transparent
+    );
+    mask-image: linear-gradient(
+        to right,
+        transparent,
+        black 4px,
+        black calc(100% - 4px),
+        transparent
+    );
+    scrollbar-width: thin;
+}

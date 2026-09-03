@@ -68,7 +68,10 @@ const Blog = () => {
               <h2 className="text-xl sm:text-2xl font-bold text-black dark:text-[#e4e4e4] mb-3 group-hover:underline decoration-1 underline-offset-4">
                 {featuredPost.title}
               </h2>
-              <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 leading-relaxed">
+              <p
+                style={{ fontFamily: "'Iosevka', monospace" }}
+                className="text-sm sm:text-base text-gray-600 dark:text-gray-400 leading-relaxed"
+              >
                 {featuredPost.excerpt}
               </p>
             </Link>
@@ -108,7 +111,10 @@ const Blog = () => {
                         className="text-gray-300 dark:text-gray-600 group-hover:text-black dark:group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300"
                       />
                     </div>
-                    <p className="text-sm text-gray-500 dark:text-gray-400 line-clamp-2">
+                    <p
+                      style={{ fontFamily: "'Iosevka', monospace" }}
+                      className="text-sm text-gray-500 dark:text-gray-400 line-clamp-2"
+                    >
                       {post.excerpt}
                     </p>
                     <div className="flex items-center gap-2 mt-2 sm:mt-1">
