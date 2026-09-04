@@ -68,8 +68,9 @@ function PolaroidPfp({
       onMouseLeave={onHoverEnd}
     >
       <div
-        className={`w-52 rounded-sm border border-gray-200 bg-white p-2 pb-4 shadow-lg shadow-black/10 transition-transform duration-300 ease-out dark:border-[#323437] dark:bg-[#111113] dark:shadow-black/50 ${isHovered ? "-translate-y-1 rotate-0" : "rotate-[-4deg]"
-          }`}
+        className={`w-52 rounded-sm border border-gray-200 bg-white p-2 pb-4 shadow-lg shadow-black/10 transition-transform duration-300 ease-out dark:border-[#323437] dark:bg-[#111113] dark:shadow-black/50 ${
+          isHovered ? "-translate-y-1 rotate-0" : "rotate-[-4deg]"
+        }`}
       >
         <PfpImage
           size={208}
@@ -159,12 +160,12 @@ function Profile() {
       style={{ fontFamily: "'Iosevka', monospace" }}
       className="text-base sm:text-lg font-normal leading-relaxed text-gray-600 dark:text-gray-400 w-full text-left"
     >
-      I'm Subash and I have my alias as{" "}
+      I'm Subash and I am from{" "}
       <strong className="font-semibold text-black dark: text-white">
-        axosis
+        Kathmandu, Nepal
       </strong>
-      . I am an undegrad aspiring Web Developer and Software Engineer.
-      I develop web-apps, widgets and explore the beauty of Linux.
+      . I am an undegrad aspiring FullStack Web Developer and Software Engineer.
+      I build web-apps, widgets and design stuffs.
     </p>
   );
 
@@ -452,7 +453,16 @@ function AboutHighlights() {
           style={{ fontFamily: "'Iosevka', monospace" }}
           className="text-sm font-semibold leading-relaxed text-gray-600 dark:text-gray-400"
         >
-          I am deeply interested in full-stack development and building software that just works. When I'm not writing code for web applications or widgets, you'll probably find me customizing my Linux environment. I enjoy working with open-source tools, learning about system architecture, and crafting minimal, distraction-free desktop setups.
+          <span
+            style={{ fontFamily: "'Tiny5', sans-serif" }}
+            className="text-black dark:text-white text-lg tracking-wide inline-block"
+          >
+            axosis
+          </span>{" "}
+          is my alias I use in the internet.
+          <span className="dark:text-amber-400 text-blue-400"> ୧(▲ᴗ▲)ノ </span>
+          My curiosity over the Computers has led me to many ideas and I really
+          love when it comes to life via coding.
         </p>
       </div>
     </div>
@@ -506,7 +516,7 @@ function ScrollHint() {
           }}
           className="-rotate-1 text-2xl sm:text-3xl leading-tight text-center"
         >
-          Pssst...
+          hey
           <br />
           there&apos;s more.
         </span>

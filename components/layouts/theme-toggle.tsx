@@ -4,43 +4,27 @@ import { useState, useEffect } from "react";
 import { Moon, Sun } from "lucide-react";
 
 const Theme = () => {
-  // Keep the server and first client render identical. Browser preferences are
-  // applied only after hydration, when `window` and localStorage are available.
   const [theme, setTheme] = useState<"light" | "dark">("light");
-  const [isHydrated, setIsHydrated] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    const frame = window.requestAnimationFrame(() => {
-      const savedTheme = localStorage.getItem("theme");
-      const initialTheme =
-        savedTheme === "dark" || savedTheme === "light"
-          ? savedTheme
-          : window.matchMedia("(prefers-color-scheme: dark)").matches
-            ? "dark"
-            : "light";
-
-      setTheme(initialTheme);
-      setIsHydrated(true);
-    });
-
-    return () => window.cancelAnimationFrame(frame);
+    setMounted(true);
+    const isDark = document.documentElement.classList.contains("dark");
+    setTheme(isDark ? "dark" : "light");
   }, []);
 
-  useEffect(() => {
-    if (!isHydrated) return;
+  const toggleTheme = () => {
+    const nextTheme = theme === "dark" ? "light" : "dark";
+    setTheme(nextTheme);
 
     const root = document.documentElement;
-    if (theme === "dark") {
+    if (nextTheme === "dark") {
       root.classList.add("dark");
       localStorage.setItem("theme", "dark");
     } else {
       root.classList.remove("dark");
       localStorage.setItem("theme", "light");
     }
-  }, [isHydrated, theme]);
-
-  const toggleTheme = () => {
-    setTheme((prev) => (prev === "dark" ? "light" : "dark"));
   };
 
   return (
@@ -48,8 +32,9 @@ const Theme = () => {
       onClick={toggleTheme}
       className="p-2 text-gray-800 dark:text-[#eeeeee] transition-colors duration-200 cursor-pointer"
       aria-label="Toggle Theme"
+      suppressHydrationWarning
     >
-      {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
+      {mounted && theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
     </button>
   );
 };
