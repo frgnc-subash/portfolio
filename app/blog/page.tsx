@@ -36,7 +36,10 @@ const Blog = () => {
           <h1 className="text-3xl font-bold tracking-tight text-black dark:text-[#e4e4e4] mb-2">
             Writing
           </h1>
-          <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+          <p
+            style={{ fontFamily: "'Iosevka', monospace" }}
+            className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed"
+          >
             My thoughts, experiences and adventure.
           </p>
         </div>
