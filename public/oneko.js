@@ -26,6 +26,13 @@
   let idleAnimationFrame = 0;
   let awake = false;
 
+  // Cursor-idle sleep: dozes off after the mouse stops moving for this long,
+  // regardless of how close the cat is, and wakes the instant it moves again.
+  const cursorIdleSleepMs = 5000;
+  let lastMouseMoveTime = Date.now();
+  let cursorAsleep = false;
+  let cursorSleepFrame = 0;
+
   const nekoSpeed = 10;
   const spriteSets = {
     idle: [[-3, -3]],
@@ -156,18 +163,25 @@
 
     document.body.appendChild(nekoEl);
 
-    nekoEl.addEventListener("click", function () {
+    function wake() {
       if (awake) return;
       awake = true;
       idleTime = 0;
       resetIdleAnimation();
       nekoEl.style.pointerEvents = "none";
       nekoEl.style.cursor = "";
-    });
+    }
+
+    nekoEl.addEventListener("click", wake);
 
     function updateMousePos(x, y) {
       mousePosX = Math.min(Math.max(0, x), window.innerWidth);
       mousePosY = Math.min(Math.max(0, y), window.innerHeight);
+      lastMouseMoveTime = Date.now();
+      cursorAsleep = false;
+      cursorSleepFrame = 0;
+      // The cat follows the moment the cursor moves, no click required.
+      wake();
     }
 
     document.addEventListener("mousemove", function (event) {
@@ -179,11 +193,6 @@
       function (event) {
         if (event.touches && event.touches.length > 0) {
           updateMousePos(event.touches[0].clientX, event.touches[0].clientY);
-          if (!awake) {
-            awake = true;
-            idleTime = 0;
-            resetIdleAnimation();
-          }
         }
       },
       { passive: true },
@@ -313,6 +322,20 @@
 
   function frame() {
     frameCount += 1;
+
+    if (Date.now() - lastMouseMoveTime >= cursorIdleSleepMs) {
+      cursorAsleep = true;
+    }
+
+    if (cursorAsleep) {
+      if (cursorSleepFrame < 8) {
+        setSprite("tired", 0);
+      } else {
+        setSprite("sleeping", Math.floor(cursorSleepFrame / 4));
+      }
+      cursorSleepFrame += 1;
+      return;
+    }
 
     if (!awake) {
       setSprite("sleeping", Math.floor(frameCount / 4));

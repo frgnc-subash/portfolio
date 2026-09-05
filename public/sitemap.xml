@@ -25,32 +25,26 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://subashlamatamang.com.np/blog/minimalist-interfaces</loc>
-    <lastmod>2024-01-12</lastmod>
+    <loc>https://subashlamatamang.com.np/blog/from-html-to-nextjs</loc>
+    <lastmod>2026-08-20</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://subashlamatamang.com.np/blog/force-graphs</loc>
-    <lastmod>2023-12-28</lastmod>
+    <loc>https://subashlamatamang.com.np/blog/windows-to-nixos</loc>
+    <lastmod>2026-07-14</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://subashlamatamang.com.np/blog/dark-mode</loc>
-    <lastmod>2023-12-15</lastmod>
+    <loc>https://subashlamatamang.com.np/blog/building-the-navigation-graph</loc>
+    <lastmod>2026-06-02</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://subashlamatamang.com.np/blog/state-management</loc>
-    <lastmod>2023-11-08</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://subashlamatamang.com.np/blog/react-performance</loc>
-    <lastmod>2023-10-22</lastmod>
+    <loc>https://subashlamatamang.com.np/blog/hello-world</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
