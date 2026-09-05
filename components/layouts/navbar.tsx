@@ -83,7 +83,7 @@ export default function Navbar() {
   }, [isOpen]);
 
   const desktopLinkClass = (href: string) =>
-    `block px-4 py-2 font-semibold transition-colors duration-200 ${
+    `block px-4 py-2 font-mono font-semibold transition-colors duration-200 ${
       isActive(href)
         ? "active-link text-black dark:text-(--accent-active) font-bold"
         : "text-gray-600 dark:text-(--text-secondary) hover:text-black dark:hover:text-[#e4e4e4]"
@@ -116,7 +116,6 @@ export default function Navbar() {
                 href={link.href}
                 onMouseEnter={(event) => moveIndicator(event.currentTarget)}
                 className={desktopLinkClass(link.href)}
-                style={{ fontFamily: "'Iosevka', monospace" }}
               >
                 {link.label}
               </Link>
@@ -168,8 +167,7 @@ export default function Navbar() {
               key={link.href}
               href={link.href}
               onClick={() => setIsOpen(false)}
-              style={{ fontFamily: "'Iosevka', monospace" }}
-              className={`rounded-md px-3 py-3 text-base font-semibold transition-colors duration-200 ${isActive(link.href) ? "bg-gray-100 text-black dark:bg-[#1e1e1e] dark:text-(--accent-active) font-bold" : "text-gray-600 hover:bg-gray-100 hover:text-black dark:text-(--text-secondary) dark:hover:bg-[#1e1e1e] dark:hover:text-[#e4e4e4]"}`}
+              className={`font-mono rounded-md px-3 py-3 text-base font-semibold transition-colors duration-200 ${isActive(link.href) ? "bg-gray-100 text-black dark:bg-[#1e1e1e] dark:text-(--accent-active) font-bold" : "text-gray-600 hover:bg-gray-100 hover:text-black dark:text-(--text-secondary) dark:hover:bg-[#1e1e1e] dark:hover:text-[#e4e4e4]"}`}
             >
               {link.label}
             </Link>

@@ -2,6 +2,12 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+@theme {
+    --font-mono:
+        "Iosevka", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+        monospace;
+}
+
 :root {
     --bg-primary: #ffffff;
     --text-primary: #1a1a1a;

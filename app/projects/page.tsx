@@ -33,10 +33,7 @@ export default function ProjectsPage() {
         <h1 className="text-3xl font-bold tracking-tight text-black dark:text-[#e4e4e4] mb-2">
           Projects
         </h1>
-        <p
-          style={{ fontFamily: "'Iosevka', monospace" }}
-          className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed"
-        >
+        <p className="font-mono text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
           A collection of tools, applications, and experiments I&apos;ve built.
         </p>
       </div>
@@ -73,10 +70,7 @@ export default function ProjectsPage() {
               <h2 className="mb-3 text-lg font-bold text-black dark:text-[#e4e4e4]">
                 {project.title}
               </h2>
-              <p
-                style={{ fontFamily: "'Iosevka', monospace" }}
-                className="mb-4 text-sm leading-relaxed text-gray-600 dark:text-gray-400"
-              >
+              <p className="font-mono mb-4 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
                 {project.description}
               </p>
               <div className="flex flex-wrap gap-2">

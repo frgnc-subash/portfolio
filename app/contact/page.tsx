@@ -130,10 +130,7 @@ const Contact = () => {
           Let&apos;s Connect{" "}
           <Sparkles size={20} className="text-yellow-500 animate-pulse" />
         </h1>
-        <p
-          style={{ fontFamily: "'Iosevka', monospace" }}
-          className="text-gray-600 dark:text-gray-400 leading-relaxed text-sm sm:text-base"
-        >
+        <p className="font-mono text-gray-600 dark:text-gray-400 leading-relaxed text-sm sm:text-base">
           Whether you have a project in mind, a question about my work, or just
           want to say hi — I&apos;m always ready to chat.
         </p>

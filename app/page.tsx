@@ -156,10 +156,7 @@ function Profile() {
   );
 
   const bioParagraph = (
-    <p
-      style={{ fontFamily: "'Iosevka', monospace" }}
-      className="text-base sm:text-lg font-normal leading-relaxed text-gray-600 dark:text-gray-400 w-full text-left"
-    >
+    <p className="font-mono text-base sm:text-lg font-normal leading-relaxed text-gray-600 dark:text-gray-400 w-full text-left">
       I'm Subash and I am from{" "}
       <strong className="font-semibold text-black dark: text-white">
         Kathmandu, Nepal
@@ -312,10 +309,7 @@ function RecentCards() {
                 <span className="text-sm font-medium text-gray-700 dark:text-gray-200 group-hover:text-black dark:group-hover:text-white transition-colors truncate">
                   {project.title}
                 </span>
-                <span
-                  style={{ fontFamily: "'Iosevka', monospace" }}
-                  className="text-sm text-gray-500 dark:text-gray-400 truncate"
-                >
+                <span className="font-mono text-sm text-gray-500 dark:text-gray-400 truncate">
                   {project.description}
                 </span>
               </div>
@@ -449,10 +443,7 @@ function AboutHighlights() {
         </div>
       </div>
       <div className={`${cardClass} mt-4`}>
-        <p
-          style={{ fontFamily: "'Iosevka', monospace" }}
-          className="text-sm font-semibold leading-relaxed text-gray-600 dark:text-gray-400"
-        >
+        <p className="font-mono text-sm font-semibold leading-relaxed text-gray-600 dark:text-gray-400">
           <span
             style={{ fontFamily: "'Tiny5', sans-serif" }}
             className="text-black dark:text-white text-lg tracking-wide inline-block"
