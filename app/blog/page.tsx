@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowUpRight, Sparkles, Calendar } from "lucide-react";
+import { ArrowUpRight, ArrowRight, Sparkles, Calendar } from "lucide-react";
 import { BLOG_POSTS } from "@/data/blogData";
 import { SITE_URL, useSeo } from "@/lib/seo";
 
@@ -47,30 +47,31 @@ const Blog = () => {
           <div className="px-4 sm:px-0">
             <Link
               href={featuredPost.slug}
-              className="group block relative overflow-hidden rounded-2xl bg-gray-50 dark:bg-[#1e1e1e] border border-gray-100 dark:border-[#323437] p-6 sm:p-8 transition-all hover:border-gray-300 dark:hover:border-gray-600"
+              className="group block rounded-lg border border-gray-300 dark:border-[#3a3a3c] bg-white dark:bg-[#0a0a0a] shadow-[3px_3px_0_0_rgba(0,0,0,0.06)] dark:shadow-[3px_3px_0_0_rgba(255,255,255,0.04)] p-5 sm:p-6 transition-transform duration-200 hover:-translate-y-0.5"
             >
-              <div className="absolute top-4 right-4 p-2 rounded-full bg-white dark:bg-[#080808] border border-gray-100 dark:border-[#323437] opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <ArrowUpRight
-                  size={16}
-                  className="text-black dark:text-white"
-                />
-              </div>
-
-              <div className="flex items-center gap-3 mb-4">
-                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-medium bg-black dark:bg-[#e4e4e4] text-white dark:text-black">
-                  <Sparkles size={10} /> Featured
+              <div className="flex items-center justify-between mb-4">
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-gray-50/80 dark:bg-[#1e1e1e]/60 backdrop-blur-md text-xs font-semibold text-black dark:text-[#e4e4e4]">
+                  <Sparkles size={12} /> Featured
                 </span>
-                <span className="text-xs text-gray-500 font-medium">
-                  {featuredPost.date}
+                <span className="flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400 font-mono">
+                  <Calendar size={12} /> {featuredPost.date}
                 </span>
               </div>
 
-              <h2 className="text-xl sm:text-2xl font-bold text-black dark:text-[#e4e4e4] mb-3 group-hover:underline decoration-1 underline-offset-4">
+              <h2 className="text-lg sm:text-xl font-bold text-black dark:text-[#e4e4e4] mb-2 truncate group-hover:underline decoration-1 underline-offset-4">
                 {featuredPost.title}
               </h2>
-              <p className="font-mono text-sm sm:text-base text-gray-600 dark:text-gray-400 leading-relaxed">
+              <p className="font-mono text-sm sm:text-base text-gray-600 dark:text-gray-400 leading-relaxed mb-4 line-clamp-2">
                 {featuredPost.excerpt}
               </p>
+
+              <span className="inline-flex items-center gap-1 text-xs font-medium text-gray-500 dark:text-gray-400 group-hover:text-black dark:group-hover:text-white transition-colors">
+                Read the full post
+                <ArrowRight
+                  size={12}
+                  className="group-hover:translate-x-0.5 transition-transform"
+                />
+              </span>
             </Link>
           </div>
         )}

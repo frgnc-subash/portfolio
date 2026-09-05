@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import { Caveat } from "next/font/google";
-import "@fontsource/iosevka/400.css";
-import "@fontsource/iosevka/500.css";
+import { Caveat, Roboto_Condensed } from "next/font/google";
 import SiteShell from "@/components/layouts/site-shell";
 import "./globals.css";
 
@@ -10,6 +8,12 @@ const handwriting = Caveat({
   subsets: ["latin"],
   weight: ["600"],
   variable: "--font-handwriting",
+});
+
+const robotoCondensed = Roboto_Condensed({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-roboto-condensed",
 });
 
 export const metadata: Metadata = {
@@ -37,7 +41,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     <html
       lang="en"
       suppressHydrationWarning
-      className={`h-full ${handwriting.variable}`}
+      className={`h-full ${handwriting.variable} ${robotoCondensed.variable}`}
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />

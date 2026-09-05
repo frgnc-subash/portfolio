@@ -11,7 +11,7 @@ export const PROJECTS: Project[] = [
     tech: ["React", "TypeScript", "2D Graph", "Tailwind"],
     link: "https://subashlamatamang.com.np",
     github: "https://github.com/frgnc-subash/portfolio",
-    image: "/projects/portfolio.png",
+    image: "/projects/portfolio-preview.png",
     isFeatured: true,
   },
   {
@@ -33,7 +33,7 @@ export const PROJECTS: Project[] = [
     tech: ["Nix", "NixOS", "Home Manager"],
     link: "https://github.com/frgnc-subash/nixcraft",
     github: "https://github.com/frgnc-subash/nixcraft",
-    image: "/projects/nixcraft.png",
+    image: "/projects/nixcraft-preview.png",
   },
   {
     id: "4",

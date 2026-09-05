@@ -49,7 +49,7 @@ const Footer = () => {
         </div>
 
         <div className="text-sm text-gray-500 dark:text-[#949494]">
-          &copy; {currentYear} frgnc-subash
+          &copy; {currentYear} axosis
         </div>
       </div>
     </footer>
