@@ -11,7 +11,7 @@ const BlogPost = () => {
   const params = useParams<{ slug: string }>();
   const slug = params.slug;
 
-  const fullSlug = `/blog/${slug}`;
+  const fullSlug = `/blogs/${slug}`;
   const post = BLOG_POSTS.find((p) => p.slug === fullSlug);
 
   useSeo({
@@ -48,7 +48,7 @@ const BlogPost = () => {
           Post not found
         </h2>
         <Link
-          href="/blog"
+          href="/blogs"
           className="text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors underline"
         >
           Back to Writing

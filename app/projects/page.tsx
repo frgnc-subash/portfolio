@@ -38,7 +38,7 @@ export default function ProjectsPage() {
         </p>
       </div>
       <div className="grid grid-cols-1 gap-6 px-4 sm:px-0">
-        {PROJECTS.map((project) => (
+        {PROJECTS.map((project, index) => (
           <article
             key={project.id}
             className="group relative flex flex-col overflow-hidden rounded-xl border border-gray-200 bg-white transition-all hover:border-gray-300 hover:shadow-sm dark:border-[#323437] dark:bg-[#080808] dark:hover:border-gray-600"
@@ -49,6 +49,7 @@ export default function ProjectsPage() {
                 alt={`${project.title} project preview`}
                 fill
                 sizes="(max-width: 672px) 100vw, 672px"
+                priority={index === 0}
                 className="object-contain transition-transform duration-500 group-hover:scale-[1.015]"
               />
               {!project.image && (

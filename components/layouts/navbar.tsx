@@ -9,7 +9,7 @@ import ThemeToggle from "./theme-toggle";
 
 const navLinks = [
   { href: "/projects", label: "projects" },
-  { href: "/blog", label: "blog" },
+  { href: "/blogs", label: "blogs" },
   { href: "/contact", label: "contact" },
 ];
 
@@ -51,7 +51,7 @@ export default function Navbar() {
     opacity: 0,
   });
   const isActive = (href: string) =>
-    pathname === href || (href === "/blog" && pathname.startsWith("/blog/"));
+    pathname === href || (href === "/blogs" && pathname.startsWith("/blogs/"));
 
   const moveIndicator = useCallback((element: HTMLElement) => {
     setIndicatorStyle({

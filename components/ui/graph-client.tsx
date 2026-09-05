@@ -63,7 +63,7 @@ const Graph = () => {
     const nodes: CustomNode[] = [
       { id: "about", name: "About", path: "/", val: NODE_VAL },
       { id: "projects", name: "Projects", path: "/projects", val: NODE_VAL },
-      { id: "blog", name: "Blog", path: "/blog", val: NODE_VAL },
+      { id: "blog", name: "Blog", path: "/blogs", val: NODE_VAL },
       { id: "contact", name: "Contact", path: "/contact", val: NODE_VAL },
       ...PROJECTS.map(
         (project): CustomNode => ({

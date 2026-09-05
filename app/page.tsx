@@ -369,7 +369,7 @@ function RecentCards() {
           ))}
         </div>
         <Link
-          href="/blog"
+          href="/blogs"
           className="inline-flex items-center gap-1 text-xs font-medium text-gray-500 hover:text-black dark:text-gray-400 dark:hover:text-white transition-colors self-start ml-2.5 sm:ml-3 group"
         >
           See more articles

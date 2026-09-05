@@ -16,7 +16,7 @@ export const BLOG_POSTS: BlogPost[] = [
     excerpt:
       "This site has been rebuilt three times. Here is what each version taught me, from a single HTML file to the Next.js app you are reading right now.",
     date: "Aug 20, 2026",
-    slug: "/blog/from-html-to-nextjs",
+    slug: "/blogs/from-html-to-nextjs",
     isFeatured: false,
     content: `
       <p>This website has been rebuilt three times. Every version taught me something different about web development, and looking back, I can see my own growth as a developer just by comparing the old code to what runs today.</p>
@@ -56,7 +56,7 @@ export const BLOG_POSTS: BlogPost[] = [
     excerpt:
       "I left Windows for Fedora, then Arch, then NixOS. Each switch happened for a real reason, including one I did not see coming.",
     date: "Jul 14, 2026",
-    slug: "/blog/windows-to-nixos",
+    slug: "/blogs/windows-to-nixos",
     isFeatured: true,
     content: `
       <p>I switched away from Windows a while back, and since then I have hopped between three Linux distributions. Each one solved a problem the last one had, and each one taught me something new about how Linux actually works.</p>
@@ -95,7 +95,7 @@ export const BLOG_POSTS: BlogPost[] = [
     excerpt:
       "The Navigation Map on my homepage is a real force directed graph, not a static image. Here is how I built it and what broke along the way.",
     date: "Jun 02, 2026",
-    slug: "/blog/building-the-navigation-graph",
+    slug: "/blogs/building-the-navigation-graph",
     isFeatured: false,
     content: `
       <p>If you scroll down on my homepage, you will find a small interactive graph connecting this site's pages, projects and blog posts. It is not a static illustration. It is a live force simulation you can drag, zoom and click through to actually navigate the site.</p>
@@ -142,7 +142,7 @@ export const BLOG_POSTS: BlogPost[] = [
     excerpt:
       "Long before any of this, there was a blue Turbo C screen in school and a single printf statement in college. Here is where my interest in programming actually began.",
     date: "May 10, 2026",
-    slug: "/blog/hello-world",
+    slug: "/blogs/hello-world",
     isFeatured: false,
     content: `
       <p>Every developer has a first program. Mine was not on this site, or in any framework, or even on a modern editor. It started on an old blue screen, years before I knew what a framework was.</p>

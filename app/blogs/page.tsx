@@ -10,12 +10,12 @@ const Blog = () => {
     title: "Writing",
     description:
       "Articles by Subash Lama Tamang on React, interface design, dark mode, graph visualization, state management, and frontend performance.",
-    path: "/blog",
+    path: "/blogs",
     jsonLd: {
       "@context": "https://schema.org",
       "@type": "Blog",
       name: "Writing by Subash Lama Tamang",
-      url: `${SITE_URL}/blog`,
+      url: `${SITE_URL}/blogs`,
       blogPost: BLOG_POSTS.map((post) => ({
         "@type": "BlogPosting",
         headline: post.title,
